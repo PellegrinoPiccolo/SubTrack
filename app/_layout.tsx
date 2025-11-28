@@ -1,9 +1,12 @@
+import { Stack } from 'expo-router'
 import React from 'react'
 import { View } from 'react-native'
 
 const _layout = () => {
   return (
-    <View></View>
+    <Stack>
+      <Stack.Screen name='(tabs)'  options={{ headerShown: false }} />
+    </Stack>
   )
 }
 
