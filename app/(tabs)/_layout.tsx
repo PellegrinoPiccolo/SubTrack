@@ -12,8 +12,11 @@ import WbSun from '../../assets/icons/wb_sunny.svg'
 import BedTime from '../../assets/icons/bedtime.svg'
 import NativeButton from '../../components/NativeButton'
 import useSubs from '../../hook/SubsHook'
+import { useTranslation } from 'react-i18next'
 
 const _layout = () => {
+
+  const {t} = useTranslation();
 
   SplashScreen.preventAutoHideAsync();
 
@@ -65,7 +68,7 @@ const _layout = () => {
         <Tabs.Screen 
           name="index" 
           options={{ 
-            title: 'Home',
+            title: t('tabBar.home'),
             tabBarIcon: ({focused}) => {
               return focused ? <HomeFilled width={30} height={30} fill={colorPalette.primary} /> : 
               <HomeIcon width={30} height={30} fill={colorPalette.textSecondary} /> 
@@ -80,7 +83,7 @@ const _layout = () => {
         <Tabs.Screen 
           name="profile" 
           options={{ 
-            title: 'Categories',
+            title: t('tabBar.categories'),
             tabBarIcon: ({focused}) => {
               return focused ? <LeaderBoardFilled width={30} height={30} fill={colorPalette.primary} /> : 
               <LeaderBoard width={30} height={30} fill={colorPalette.textSecondary} /> 

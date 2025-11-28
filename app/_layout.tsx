@@ -3,6 +3,7 @@ import React from 'react'
 import { View } from 'react-native'
 import ThemeProvider from '../context/ThemeContext'
 import SubsProvider from '../context/SubsContext'
+import '../i18n'
 
 const _layout = () => {
   return (
