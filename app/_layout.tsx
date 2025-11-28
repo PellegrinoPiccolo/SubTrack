@@ -1,12 +1,19 @@
 import { Stack } from 'expo-router'
 import React from 'react'
 import { View } from 'react-native'
+import ThemeProvider from '../context/ThemeContext'
+import SubsProvider from '../context/SubsContext'
+import '../i18n'
 
 const _layout = () => {
   return (
-    <Stack>
-      <Stack.Screen name='(tabs)'  options={{ headerShown: false }} />
-    </Stack>
+    <ThemeProvider>
+      <SubsProvider>
+        <Stack>
+          <Stack.Screen name='(tabs)'  options={{ headerShown: false }} />
+        </Stack>
+      </SubsProvider>
+    </ThemeProvider>
   )
 }
 
