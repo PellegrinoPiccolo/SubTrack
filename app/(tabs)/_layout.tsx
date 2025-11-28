@@ -77,6 +77,7 @@ const _layout = () => {
               return focused ? <HomeFilled width={30} height={30} fill={colorPalette.primary} /> : 
               <HomeIcon width={30} height={30} fill={colorPalette.textSecondary} /> 
             },
+            tabBarLabel: t('tabBar.home')
           }} 
         />
         <Tabs.Screen 
@@ -93,7 +94,8 @@ const _layout = () => {
             tabBarIcon: ({focused}) => {
               return focused ? <LeaderBoardFilled width={30} height={30} fill={colorPalette.primary} /> : 
               <LeaderBoard width={30} height={30} fill={colorPalette.textSecondary} /> 
-            }
+            },
+            tabBarLabel: t('tabBar.categories')
           }} 
         />
     </Tabs>
