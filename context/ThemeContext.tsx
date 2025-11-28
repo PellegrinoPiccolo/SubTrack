@@ -8,12 +8,14 @@ interface ThemeContextType {
   theme: string | 'light' | 'dark';
   changeTheme: (newTheme: string, type: string) => void;
   colorPalette: typeof colorsThemePalette.light | typeof colorsThemePalette.dark;
+  loadingTheme: boolean;
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
   theme: 'light' as string | 'dark' as string,
   changeTheme: (newTheme: string, type: string) => {},
   colorPalette: {} as typeof colorsThemePalette.light | typeof colorsThemePalette.dark,
+  loadingTheme: true,
 });
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
@@ -22,11 +24,11 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [colorPalette, setColorPalette] = useState<typeof colorsThemePalette.light | typeof colorsThemePalette.dark>(
     systemColorScheme === 'dark' ? colorsThemePalette.dark : colorsThemePalette.light
   );
+  const [loadingTheme, setLoadingTheme] = useState(true);
 
   useEffect(() => {
-    SplashScreen.preventAutoHideAsync();
     const loadTheme = async () => {
-        
+        setLoadingTheme(true);
         const storedTheme = await AsyncStorage.getItem('theme');
         if (storedTheme === 'light' || storedTheme === 'dark') {
             StatusBar.setBarStyle(storedTheme === 'light' ? 'dark-content' : 'light-content');
@@ -38,7 +40,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
             setTheme(systemTheme);
             setColorPalette(systemTheme === 'light' ? colorsThemePalette.light : colorsThemePalette.dark);
         }
-        await SplashScreen.hideAsync();
+        setLoadingTheme(false);
     };
     loadTheme();
   }, []);
@@ -60,7 +62,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme, colorPalette }}>
+    <ThemeContext.Provider value={{ theme, changeTheme, colorPalette, loadingTheme }}>
       {children}
     </ThemeContext.Provider>
   );

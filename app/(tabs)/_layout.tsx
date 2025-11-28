@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View } from 'react-native'
-import Home from './index'
-import { Tabs } from 'expo-router'
+import { SplashScreen, Tabs } from 'expo-router'
 import TabBarButton from '../../components/TabBarButton'
-import { Ionicons } from '@expo/vector-icons'
 import useTheme from '../../hook/ThemeHook'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import HomeIcon from '../../assets/icons/home.svg'
@@ -13,11 +11,25 @@ import LeaderBoardFilled from '../../assets/icons/leaderboard_filled.svg'
 import WbSun from '../../assets/icons/wb_sunny.svg'
 import BedTime from '../../assets/icons/bedtime.svg'
 import NativeButton from '../../components/NativeButton'
+import useSubs from '../../hook/SubsHook'
 
 const _layout = () => {
 
-  const {colorPalette, theme, changeTheme} = useTheme();
+  SplashScreen.preventAutoHideAsync();
+
+  const {colorPalette, theme, changeTheme, loadingTheme} = useTheme();
+  const {loadingSubs} = useSubs();
   const insets = useSafeAreaInsets();
+
+  const getVariables = async () => {
+    if(!loadingTheme && !loadingSubs) {
+      await SplashScreen.hideAsync();
+    }
+  }
+
+  useEffect(() => {
+    getVariables();
+  }, [loadingTheme, loadingSubs])
 
   return (
     <Tabs 
