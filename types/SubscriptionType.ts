@@ -9,4 +9,5 @@ export interface SubscriptionType {
     firstBillingDate: Date;
     reminder: boolean;
     reminderDaysBefore: number;
+    notificationId?: string | null;
 }
