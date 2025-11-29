@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image, Platform, Text, View } from 'react-native'
 import { SplashScreen, Tabs, useRouter } from 'expo-router'
 import TabBarButton from '../../components/TabBarButton'
 import useTheme from '../../hook/ThemeHook'
@@ -86,7 +86,7 @@ const _layout = () => {
                       padding: 5, 
                       backgroundColor: colorPalette.background, 
                       borderRadius: 15, 
-                      margin: 1
+                      margin: Platform.OS === 'ios' ? 1 : 3
                     }}>
                       <Image source={Logo} style={{ width: 30, height: 30, borderRadius: 5 }} />
                     </View>
@@ -129,7 +129,6 @@ const _layout = () => {
           </BlurView>
         ),
         tabBarInactiveTintColor: colorPalette.textSecondary,
-        tabBarActiveTintColor: colorPalette.primary,
         tabBarStyle: { 
           backgroundColor: colorPalette.background,
           height: 70 + insets.bottom,
@@ -142,12 +141,29 @@ const _layout = () => {
         <Tabs.Screen 
           name="index" 
           options={{ 
-            title: 'Sub Track',
+            tabBarShowLabel: false,
             tabBarIcon: ({focused}) => {
-              return focused ? <HomeFilled width={30} height={30} fill={colorPalette.primary} /> : 
-              <HomeIcon width={30} height={30} fill={colorPalette.textSecondary} /> 
+              return focused ? 
+              <View style={{
+                backgroundColor: colorPalette.primary + '33',
+                borderRadius: 15,
+                padding: 5,
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 65,
+                height: 65,
+                marginTop: 15
+              }}>
+                <HomeFilled width={30} height={30} fill={colorPalette.primary} /> 
+                <Text style={{ color: colorPalette.primary, fontSize: 10, marginTop: 2 }}>{t('tabBar.home')}</Text>
+              </View> : 
+              <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: 65, height: 65, marginTop: 15 }}>
+                <HomeIcon width={30} height={30} fill={colorPalette.textSecondary} /> 
+                <Text style={{ color: colorPalette.textSecondary, fontSize: 10, marginTop: 2 }}>{t('tabBar.home')}</Text>
+              </View>
             },
-            tabBarLabel: t('tabBar.home')
+            tabBarActiveTintColor: colorPalette.primary,
           }} 
         />
         <Tabs.Screen 
@@ -158,14 +174,31 @@ const _layout = () => {
           }}} 
         />
         <Tabs.Screen 
-          name="profile" 
+          name="category" 
           options={{ 
-            title: 'Sub Track',
+            tabBarShowLabel: false,
             tabBarIcon: ({focused}) => {
-              return focused ? <LeaderBoardFilled width={30} height={30} fill={colorPalette.primary} /> : 
-              <LeaderBoard width={30} height={30} fill={colorPalette.textSecondary} /> 
+              return focused ? 
+              <View style={{
+                backgroundColor: colorPalette.secondary + '33',
+                borderRadius: 15,
+                padding: 5,
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 65,
+                height: 65,
+                marginTop: 15
+              }}>
+                <LeaderBoardFilled width={30} height={30} fill={colorPalette.secondary} /> 
+                <Text style={{ color: colorPalette.secondary, fontSize: 10, marginTop: 2 }}>{t('tabBar.categories')}</Text>
+              </View> : 
+              <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: 65, height: 65, marginTop: 15 }}>
+                <LeaderBoard width={30} height={30} fill={colorPalette.textSecondary} /> 
+                <Text style={{ color: colorPalette.textSecondary, fontSize: 10, marginTop: 2 }}>{t('tabBar.categories')}</Text>
+              </View>
             },
-            tabBarLabel: t('tabBar.categories')
+            tabBarActiveTintColor: colorPalette.secondary,
           }} 
         />
     </Tabs>
