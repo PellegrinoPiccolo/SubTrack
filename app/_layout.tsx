@@ -1,31 +1,90 @@
 import { Stack } from 'expo-router'
-import React from 'react'
-import { View } from 'react-native'
-import ThemeProvider from '../context/ThemeContext'
+import React, { useContext, useEffect } from 'react'
+import { Platform, StatusBar } from 'react-native'
+import ThemeProvider, { ThemeContext } from '../context/ThemeContext'
 import SubsProvider from '../context/SubsContext'
 import '../i18n'
 import * as Notifications from 'expo-notifications';
+import * as SystemUI from 'expo-system-ui';
+import * as NavigationBar from 'expo-navigation-bar';
+import * as Updates from 'expo-updates';
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
+  }),
+});
+
+
+const RootLayout = () => {
+  const {colorPalette, theme} = useContext(ThemeContext);
+
+  const onFetchUpdateAsync = async () => {
+    try {
+      const update = await Updates.checkForUpdateAsync();
+      if (update.isAvailable) {
+        await Updates.fetchUpdateAsync();
+        // Notify user about update and reload the app
+        await Updates.reloadAsync();
+      } else {
+        console.log("No updates available");
+      }
+    } catch (e) {
+      console.error("Error checking for updates:", e);
+    }
+  };
+
+  useEffect(() => {
+    onFetchUpdateAsync();
+  }, []);
+
+  useEffect(() => {
+    SystemUI.setBackgroundColorAsync(colorPalette.background);
+    StatusBar.setBarStyle(theme === 'light' ? 'dark-content' : 'light-content');
+    if(Platform.OS === 'android') {
+      NavigationBar.setBackgroundColorAsync(colorPalette.background);
+      NavigationBar.setButtonStyleAsync(theme === 'light' ? 'dark' : 'light');
+    }
+  }, [colorPalette, theme]);
+  
+  return (
+    <Stack
+      screenOptions={{
+        contentStyle: {
+          backgroundColor: 'black',
+        },
+      }}
+    >
+      <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+      <Stack.Screen 
+        name='viewSub' 
+        options={{ 
+          headerShown: false, 
+          presentation: 'modal', 
+          animation: 'slide_from_right' 
+        }} 
+      />
+      <Stack.Screen 
+        name='credits' 
+        options={{ 
+          headerShown: false, 
+          presentation: 'modal', 
+          animation: 'slide_from_right' 
+        }} 
+      />
+    </Stack>
+  );
+}
 
 const _layout = () => {
-
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: false,
-      // Add these two properties to satisfy the NotificationBehavior type
-      shouldShowBanner: true,
-      shouldShowList: true,
-    }),
-  });
-
   return (
     <ThemeProvider>
       <SubsProvider>
-        <Stack>
-          <Stack.Screen name='(tabs)'  options={{ headerShown: false }} />
-        </Stack>
+        <RootLayout />
       </SubsProvider>
     </ThemeProvider>
   )

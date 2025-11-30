@@ -64,7 +64,7 @@ const add = () => {
       price,
       link,
       billingCycle: billingCycle as 'monthly' | 'yearly',
-      category: category as 'Entertainment' | 'Productivity' | 'Education' | 'Health' | 'Work' | 'Home' | 'Other',
+      category: category as 'Entertainment' | 'Productivity' | 'Education' | 'Fittnes&Health' | 'Work' | 'Home' | 'Other',
       firstBillingDate,
       reminder,
       reminderDaysBefore,
@@ -149,7 +149,7 @@ const add = () => {
             <Text style={{
               color: colorPalette.textSecondary,
               fontSize: 16,
-            }}>{localDevice === 'en' ? '$' : '€'}</Text>
+            }}>{getLocales()[0].currencySymbol}</Text>
             <TextInput
               value={price}
               onChangeText={(text) => setPrice(text.replace(',', '.').replace(/[^0-9,.]/g, '').replace(/(\..*)\./g, '$1'))}
