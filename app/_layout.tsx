@@ -7,6 +7,7 @@ import '../i18n'
 import * as Notifications from 'expo-notifications';
 import * as SystemUI from 'expo-system-ui';
 import * as NavigationBar from 'expo-navigation-bar';
+import * as Updates from 'expo-updates';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -21,6 +22,25 @@ Notifications.setNotificationHandler({
 
 const RootLayout = () => {
   const {colorPalette, theme} = useContext(ThemeContext);
+
+  const onFetchUpdateAsync = async () => {
+    try {
+      const update = await Updates.checkForUpdateAsync();
+      if (update.isAvailable) {
+        await Updates.fetchUpdateAsync();
+        // Notify user about update and reload the app
+        await Updates.reloadAsync();
+      } else {
+        console.log("No updates available");
+      }
+    } catch (e) {
+      console.error("Error checking for updates:", e);
+    }
+  };
+
+  useEffect(() => {
+    onFetchUpdateAsync();
+  }, []);
 
   useEffect(() => {
     SystemUI.setBackgroundColorAsync(colorPalette.background);

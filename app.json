@@ -49,6 +49,18 @@
           "imageWidth": 200
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "2b5ebe08-fd42-4b7f-a654-59280c233bfd"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/2b5ebe08-fd42-4b7f-a654-59280c233bfd"
+    }
   }
 }
