@@ -1,6 +1,111 @@
 {
     "tabBar": {
         "home": "Home",
-        "categories": "Categories"
+        "categories": "Categories",
+        "add": "Add Subscription"
+    },
+    "addScreen": {
+        "title": "Add Subscription",
+        "subTitle": "Enter your subscription details here",
+        "name": "Service Name",
+        "description": "Service Description",
+        "descriptionPlaceholder": "For example, Premium Plan, Family Plan, etc.",
+        "price": "Price",
+        "billingCycle": "Billing Cycle",
+        "link": "Service Link",
+        "category": "Category",
+        "firstBillingDate": "First Billing Date",
+        "reminder": "Remind Me",
+        "notifyMe": "Notify Me",
+        "dayBefore": "day before",
+        "daysBefore": "days before",
+        "weekBefore": "week before",
+        "weeksBefore": "weeks before",
+        "addButton": "Add Subscription",
+        "selectDate": "Select a date",
+        "done": "Done",
+        "add": "Add Subscription",
+        "errors": {
+            "requiredFields": "Please fill in all required fields."
+        }
+    },
+    "billingCycle": {
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+    },
+    "categories": {
+        "Entertainment": "Entertainment",
+        "Productivity": "Productivity",
+        "Fittnes&Health": "Fitness & Health",
+        "Education": "Education",
+        "Work": "Work",
+        "Home": "Home",
+        "Other": "Other",
+        "noData": "No subscriptions available to display categories."
+    },
+    "home": {
+        "noSubscriptionsTitle": "No subscriptions yet",
+        "noSubscriptionsMessage": "Start by adding a new subscription!",
+        "trackSpending": "Track your spending.",
+        "trackSpendingMessage": "Keep track of all your subscriptions in one place.",
+        "getReminders": "Get reminders.",
+        "getRemindersMessage": "Never miss a billing date with our helpful reminders.",
+        "analyzeCategories": "Analyze categories.",
+        "analyzeCategoriesMessage": "See where you're spending the most and optimize your subscriptions.",
+        "clickToAdd": "Click the '+' button to add your first subscription.",
+        "totalMonthly": "Total Monthly Spending",
+        "totalYearly": "Total Yearly Spending",
+        "acrossAllSubscriptions": "across {{number}} subscription(s)",
+        "activeSubscriptions": "Active Subscriptions",
+        "totalSubs": "{{count}} total",
+        "monthly": "Monthly",
+        "yearly": "Yearly",
+        "nextBilling": "Next billing: {{date}}",
+        "days": "days",
+        "today": "today",
+        "tomorrow": "tomorrow",
+        "viewCredits": "View Credits and Attributions"
+    },
+    "category": {
+        "title": "Categories",
+        "description": "View your subscriptions by category.",
+        "noData": "No subscriptions available to display categories.",
+        "categoryBreakdown": "Category Breakdown",
+        "monthly": "Monthly",
+        "subscriptions": "subscriptions",
+        "subscription": "subscription"
+    },
+    "viewSub": {
+        "viewSubscription": "View Subscription",
+        "editSubscription": "Edit Subscription",
+        "deleteSubscription": "Delete Subscription",
+        "areYouSureDelete": "Are you sure you want to delete this subscription?",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "name": "Service Name",
+        "description": "Service Description",
+        "price": "Price",
+        "billingCycle": "Billing Cycle",
+        "link": "Service Link",
+        "category": "Category",
+        "firstBillingDate": "First Billing Date",
+        "reminder": "Remind Me",
+        "noReminderSet": "No reminder set",
+        "dayBefore": "day before",
+        "daysBefore": "days before",
+        "weekBefore": "week before",
+        "weeksBefore": "weeks before",
+        "saveChanges": "Save Changes",
+        "nextBillingDate": "Next Billing Date",
+        "deleteConfirmationMessage": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone."
+    },
+    "credits": {
+        "title": "Credits and Attributions",
+        "thanksTitle": "Thanks for using SubTrack!",
+        "thanksMessage": "SubTrack was created with passion to help you manage your subscriptions more effectively.",
+        "developer": "Developer",
+        "forTracking": "for subscription management",
+        "madeWith": "Made with",
+        "iconCredits": "Icon Credits"
     }
 }
