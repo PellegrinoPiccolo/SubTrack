@@ -48,6 +48,14 @@ const RootLayout = () => {
           animation: 'slide_from_right' 
         }} 
       />
+      <Stack.Screen 
+        name='credits' 
+        options={{ 
+          headerShown: false, 
+          presentation: 'modal', 
+          animation: 'slide_from_right' 
+        }} 
+      />
     </Stack>
   );
 }

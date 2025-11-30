@@ -356,6 +356,60 @@ const Home = () => {
     )
   }
 
+  const ListFooterComponent = () => {
+    return (
+      <View style={{ 
+        padding: 20, 
+        backgroundColor: colorPalette.background,
+        alignItems: 'center',
+        marginTop: 20,
+      }}>
+        <Pressable 
+          onPress={() => router.push('/credits')}
+          style={{ 
+            flexDirection: 'row', 
+            alignItems: 'center',
+            paddingVertical: 12,
+            paddingHorizontal: 20,
+            backgroundColor: colorPalette.backgroundSecondary,
+            borderRadius: 12,
+            borderWidth: 1,
+            borderColor: colorPalette.border,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.1,
+            shadowRadius: 3.84,
+            elevation: 3,
+          }}
+        >
+          <Ionicons name="information-circle-outline" size={20} color={colorPalette.primary} />
+          <Text style={{ 
+            color: colorPalette.text, 
+            fontSize: 14,
+            fontWeight: '600',
+            marginLeft: 8,
+            marginRight: 8
+          }}>
+            {t('home.viewCredits', 'View Credits & Attributions')}
+          </Text>
+          <Ionicons name="chevron-forward" size={18} color={colorPalette.textSecondary} />
+        </Pressable>
+        
+        <Text style={{ 
+          color: colorPalette.textSecondary, 
+          fontSize: 12, 
+          marginTop: 16,
+          textAlign: 'center'
+        }}>
+          © {new Date().getFullYear()} SubTrack
+        </Text>
+      </View>
+    );
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: colorPalette.background }}>
       <FlashList
@@ -367,6 +421,7 @@ const Home = () => {
         contentContainerStyle={{ backgroundColor: colorPalette.background, paddingBottom: 40 }}
         ListEmptyComponent={ListEmptyComponent}
         ListHeaderComponent={ListHeaderComponent}
+        ListFooterComponent={ListFooterComponent}
         />
     </View>
   )

@@ -63,7 +63,8 @@
         "nextBilling": "Prossimo addebito: {{date}}",
         "days": "giorni",
         "today": "oggi",
-        "tomorrow": "domani"
+        "tomorrow": "domani",
+        "viewCredits": "Visualizza Crediti e Attribuzioni"
     },
     "category": {
         "title": "Categorie",
@@ -97,5 +98,14 @@
         "saveChanges": "Salva Modifiche",
         "nextBillingDate": "Prossima Data di Fatturazione",
         "deleteConfirmationMessage": "Sei sicuro di voler eliminare \"{{name}}\"? Questa azione non può essere annullata."
-    }
+    },
+    "credits": {
+        "title": "Crediti e Attribuzioni",
+        "thanksTitle": "Grazie per aver usato SubTrack!",
+        "thanksMessage": "SubTrack è stato creato con passione per aiutarti a gestire i tuoi abbonamenti in modo più efficace.",
+        "developer": "Sviluppatore",
+        "forTracking": "per la gestione degli abbonamenti",
+        "madeWith": "Creato con",
+        "iconCredits": "Crediti Icone"
+    } 
 }
