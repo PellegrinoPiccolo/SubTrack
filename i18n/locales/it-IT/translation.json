@@ -41,5 +41,21 @@
         "Work": "Lavoro",
         "Home": "Casa",
         "Other": "Altro"
+    },
+    "home": {
+        "noSubscriptionsTitle": "Ancora nessun abbonamento",
+        "noSubscriptionsMessage": "Inizia aggiungendo un nuovo abbonamento!",
+        "trackSpending": "Monitora le tue spese.",
+        "trackSpendingMessage": "Tieni traccia di tutti i tuoi abbonamenti in un unico posto.",
+        "getReminders": "Ricevi promemoria.",
+        "getRemindersMessage": "Non perdere mai una data di fatturazione con i nostri promemoria utili.",
+        "analyzeCategories": "Analizza le categorie.",
+        "analyzeCategoriesMessage": "Vedi dove stai spendendo di più e ottimizza i tuoi abbonamenti.",
+        "clickToAdd": "Clicca il pulsante '+' per aggiungere il tuo primo abbonamento.",
+        "totalMonthly": "Spesa Mensile Totale",
+        "totalYearly": "Spesa Annuale Totale",
+        "acrossAllSubscriptions": "attraverso {{number}} abbonamenti/o",
+        "activeSubscriptions": "Abbonamenti attivi",
+        "totalSubs": "{{count}} totali"
     }
 }

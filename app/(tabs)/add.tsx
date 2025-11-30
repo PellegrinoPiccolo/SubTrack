@@ -149,7 +149,7 @@ const add = () => {
             <Text style={{
               color: colorPalette.textSecondary,
               fontSize: 16,
-            }}>{localDevice === 'en' ? '$' : '€'}</Text>
+            }}>{getLocales()[0].currencySymbol}</Text>
             <TextInput
               value={price}
               onChangeText={(text) => setPrice(text.replace(',', '.').replace(/[^0-9,.]/g, '').replace(/(\..*)\./g, '$1'))}
