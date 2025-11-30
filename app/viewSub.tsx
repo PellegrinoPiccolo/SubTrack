@@ -82,13 +82,11 @@ const ViewSub = () => {
     modifySub(updatedSub);
     router.back();
     setIsEditing(false);
-    Toast.success(t('viewSub.subscriptionUpdatedSuccessfully') || 'Subscription updated successfully!');
   };
 
   const handleDelete = () => {
     removeSub(subscription.id);
     setShowDeleteModal(false);
-    Toast.success('Subscription deleted successfully!');
     router.back();
   };
 
