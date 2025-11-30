@@ -66,6 +66,11 @@
     },
     "category": {
         "title": "Categorie",
-        "description": "Visualizza i tuoi abbonamenti per categoria."
+        "description": "Visualizza i tuoi abbonamenti per categoria.",
+        "noData": "Nessun abbonamento disponibile per mostrare le categorie.",
+        "categoryBreakdown": "Suddivisione per Categoria",
+        "monthly": "Mensile",
+        "subscriptions": "abbonamenti",
+        "subscription": "abbonamento"
     }
 }
