@@ -39,7 +39,7 @@ const Category = () => {
   if (subs.length === 0) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorPalette.background, padding: 20}}>
-        <Text style={{color: colorPalette.text, fontSize: 18, textAlign: 'center'}}>{t('categories.noData')}</Text>
+        <Text style={{color: colorPalette.text, fontSize: 18, textAlign: 'center'}}>{t('category.noData')}</Text>
       </View>
     )
   }
