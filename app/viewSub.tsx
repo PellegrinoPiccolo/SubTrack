@@ -127,7 +127,7 @@ const ViewSub = () => {
           )}
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
           {!isEditing ? (
             /* View Mode */
             <View style={styles.viewContainer}>

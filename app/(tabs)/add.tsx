@@ -75,7 +75,7 @@ const add = () => {
 
   return (
     <>
-    <ScrollView style={{ 
+    <ScrollView showsVerticalScrollIndicator={false} style={{ 
       flex: 1, 
       backgroundColor: colorPalette.background,
     }}>

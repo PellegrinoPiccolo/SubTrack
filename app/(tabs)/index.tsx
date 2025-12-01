@@ -48,19 +48,20 @@ const Home = () => {
 
   const calcDifferenceByToday = (sub: SubscriptionType) => {
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize to midnight
     const firstBillingDate = new Date(sub.firstBillingDate);
+    firstBillingDate.setHours(0, 0, 0, 0); // Normalize to midnight
     let nextBillingDate = new Date(firstBillingDate);
-    let differenceOfDays = 0;
+    nextBillingDate.setHours(0, 0, 0, 0); // Normalize to midnight
     // Adjust next billing date to be in the future
-    while (nextBillingDate < today) {
+    while (nextBillingDate <= today) {
       if (sub.billingCycle === 'monthly') {
         nextBillingDate.setMonth(nextBillingDate.getMonth() + 1);
-        differenceOfDays = Math.ceil((nextBillingDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
       } else if (sub.billingCycle === 'yearly') {
         nextBillingDate.setFullYear(nextBillingDate.getFullYear() + 1);
-        differenceOfDays = Math.ceil((nextBillingDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
       }
     }
+    const differenceOfDays = Math.ceil((nextBillingDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
     return differenceOfDays === 0 ? t('home.today', 'Today') : differenceOfDays === 1 ? t('home.tomorrow', 'Tomorrow') : `${differenceOfDays} ${t('home.days', 'days')}`;
   }
@@ -422,6 +423,7 @@ const Home = () => {
         ListEmptyComponent={ListEmptyComponent}
         ListHeaderComponent={ListHeaderComponent}
         ListFooterComponent={ListFooterComponent}
+        showsVerticalScrollIndicator={false}
         />
     </View>
   )
