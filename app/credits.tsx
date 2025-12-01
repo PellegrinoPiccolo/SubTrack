@@ -27,7 +27,8 @@ const Credits = () => {
     <View style={{ flex: 1, backgroundColor: colorPalette.background }}>
       {/* Header */}
       <View style={{ 
-        paddingVertical: Platform.OS === 'android' ? insets.top + 10 : 10, 
+        paddingTop: Platform.OS === 'android' ? insets.top : 10,
+        paddingBottom: 10,
         flexDirection: 'row', 
         alignItems: 'center', 
         justifyContent: 'space-between',

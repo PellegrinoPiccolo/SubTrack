@@ -311,7 +311,7 @@ const Home = () => {
           </View>
           <View style={{flexDirection: 'column', flex: 1}}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', flex: 1, alignItems: 'flex-start'}}>
-              <Text style={{ color: colorPalette.text, fontSize: 18, fontWeight: '600' }}>{sub.name}</Text>
+              <Text style={{ color: colorPalette.text, fontSize: 18, fontWeight: '600', width: '70%' }} numberOfLines={1} ellipsizeMode='tail'>{sub.name}</Text>
               <View style={{ flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                 <Text style={{ color: colorPalette.text, fontSize: 18, marginTop: 4 }}>
                   {`${getLocales()[0].currencySymbol}${sub.price}`}
