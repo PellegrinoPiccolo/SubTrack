@@ -8,6 +8,7 @@ import * as Notifications from 'expo-notifications';
 import * as SystemUI from 'expo-system-ui';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Updates from 'expo-updates';
+import { registerForPushNotificationsAsync } from '../utils/notificationsChannel'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -40,6 +41,7 @@ const RootLayout = () => {
 
   useEffect(() => {
     onFetchUpdateAsync();
+    registerForPushNotificationsAsync() ;
   }, []);
 
   useEffect(() => {

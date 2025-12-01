@@ -29,11 +29,16 @@ export async function scheduleNotification(sub: SubscriptionType) {
     triggerDate.setHours(9, 0, 0); // Set notification time to 9:00 AM
 
     let trigger: Notifications.CalendarTriggerInput;
-
+    let triggerDay = triggerDate.getDate();
+    if (sub.billingCycle === 'monthly') {
+        if (triggerDay > 28) {
+            triggerDay = 28; 
+        }
+    }
     if(sub.billingCycle === 'monthly') {
         trigger = {
             type: Notifications.SchedulableTriggerInputTypes.CALENDAR,
-            day: triggerDate.getDate(),
+            day: triggerDay,
             hour: triggerDate.getHours(),
             minute: triggerDate.getMinutes(),
             repeats: true,
