@@ -73,7 +73,8 @@
         "categoryBreakdown": "Category Breakdown",
         "monthly": "Monthly",
         "subscriptions": "subscriptions",
-        "subscription": "subscription"
+        "subscription": "subscription",
+        "noDataDescription": "There are no subscriptions available to display categories. Add some subscriptions to see the category breakdown."
     },
     "viewSub": {
         "viewSubscription": "View Subscription",
@@ -101,8 +102,8 @@
     },
     "credits": {
         "title": "Credits and Attributions",
-        "thanksTitle": "Thanks for using SubTrack!",
-        "thanksMessage": "SubTrack was created with passion to help you manage your subscriptions more effectively.",
+        "thanksTitle": "Thanks for using Sub Track!",
+        "thanksMessage": "Sub Track was created with passion to help you manage your subscriptions more effectively.",
         "developer": "Developer",
         "forTracking": "for subscription management",
         "madeWith": "Made with",

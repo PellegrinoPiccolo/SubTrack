@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable, Linking, ScrollView } from 'react-native';
+import { View, Text, Pressable, Linking, ScrollView, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import useTheme from '../hook/ThemeHook';
@@ -27,8 +27,7 @@ const Credits = () => {
     <View style={{ flex: 1, backgroundColor: colorPalette.background }}>
       {/* Header */}
       <View style={{ 
-        height: 60 + insets.top, 
-        paddingTop: insets.top, 
+        paddingVertical: Platform.OS === 'android' ? insets.top + 10 : 10, 
         flexDirection: 'row', 
         alignItems: 'center', 
         justifyContent: 'space-between',
@@ -52,6 +51,7 @@ const Credits = () => {
       </View>
 
       <ScrollView 
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ 
           padding: 20,
           paddingBottom: insets.bottom + 40

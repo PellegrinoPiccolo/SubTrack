@@ -38,20 +38,134 @@ const Category = () => {
 
   if (subs.length === 0) {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorPalette.background, padding: 20}}>
-        <Text style={{color: colorPalette.text, fontSize: 18, textAlign: 'center'}}>{t('categories.noData')}</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorPalette.background, padding: 40}}>
+        {/* Illustration container */}
+        <View style={{
+          width: 200,
+          height: 200,
+          marginBottom: 32,
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative'
+        }}>
+          {/* Outer circle with gradient effect */}
+          <View style={{
+            width: 160,
+            height: 160,
+            borderRadius: 80,
+            backgroundColor: colorPalette.backgroundSecondary,
+            opacity: 0.5,
+            position: 'absolute'
+          }} />
+          
+          {/* Middle circle */}
+          <View style={{
+            width: 120,
+            height: 120,
+            borderRadius: 60,
+            backgroundColor: colorPalette.backgroundSecondary,
+            position: 'absolute',
+            borderWidth: 3,
+            borderColor: colorPalette.border,
+            opacity: 0.7
+          }} />
+          
+          {/* Inner circle with pie chart icon */}
+          <View style={{
+            width: 80,
+            height: 80,
+            borderRadius: 40,
+            backgroundColor: colorPalette.primary,
+            opacity: 0.2,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            {/* Simple pie chart segments */}
+            <View style={{
+              width: 60,
+              height: 60,
+              borderRadius: 30,
+              overflow: 'hidden',
+              borderWidth: 2,
+              borderColor: colorPalette.primary
+            }}>
+              <View style={{
+                width: '50%',
+                height: '100%',
+                backgroundColor: colorPalette.primary,
+                opacity: 0.3
+              }} />
+            </View>
+          </View>
+          
+          {/* Small decorative circles */}
+          <View style={{
+            width: 12,
+            height: 12,
+            borderRadius: 6,
+            backgroundColor: colorPalette.secondary,
+            position: 'absolute',
+            top: 20,
+            right: 30,
+            opacity: 0.6
+          }} />
+          <View style={{
+            width: 8,
+            height: 8,
+            borderRadius: 4,
+            backgroundColor: colorPalette.azure,
+            position: 'absolute',
+            bottom: 30,
+            left: 25,
+            opacity: 0.6
+          }} />
+          <View style={{
+            width: 10,
+            height: 10,
+            borderRadius: 5,
+            backgroundColor: colorPalette.orange,
+            position: 'absolute',
+            top: 50,
+            left: 20,
+            opacity: 0.5
+          }} />
+        </View>
+
+        {/* Title */}
+        <Text style={{
+          color: colorPalette.text,
+          fontSize: 26,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          marginBottom: 12,
+          letterSpacing: 0.5
+        }}>
+          {t('category.noData')}
+        </Text>
+        
+        {/* Description */}
+        <Text style={{
+          color: colorPalette.textSecondary,
+          fontSize: 16,
+          textAlign: 'center',
+          lineHeight: 24,
+          maxWidth: 300,
+          opacity: 0.8
+        }}>
+          {t('category.noDataDescription') || 'Aggiungi i tuoi primi abbonamenti per vedere le statistiche per categoria'}
+        </Text>
       </View>
     )
   }
 
   return (
-    <ScrollView style={{flex: 1, backgroundColor: colorPalette.background}}>
+    <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, backgroundColor: colorPalette.background}}>
       <View style={{margin: 20,}}>
         <Text style={{color: colorPalette.text, fontSize: 24, marginBottom: 10, fontWeight: 'bold'}}>{t('category.title')}</Text>
         <Text style={{color: colorPalette.textSecondary, fontSize: 16, marginBottom: 10}}>{t('category.description')}</Text>
       </View>
       <View style={{flex: 1, marginTop: 20, width: '90%', flexDirection: 'column', alignItems: 'center', backgroundColor: colorPalette.backgroundSecondary, alignSelf: 'center', borderRadius: 12, padding: 20}}>
-        <View style={{height: 300, width: 300}}>
+        <View style={{height: 200, width: 200}}>
           <PolarChart
             data={DATA} // 👈 specify your data
             labelKey={"label"} // 👈 specify data key for labels

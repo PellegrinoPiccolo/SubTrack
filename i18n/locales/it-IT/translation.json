@@ -40,8 +40,7 @@
         "Education": "Istruzione",
         "Work": "Lavoro",
         "Home": "Casa",
-        "Other": "Altro",
-        "noData": "Nessun abbonamento disponibile per mostrare le categorie."
+        "Other": "Altro"
     },
     "home": {
         "noSubscriptionsTitle": "Ancora nessun abbonamento",
@@ -73,7 +72,8 @@
         "categoryBreakdown": "Suddivisione per Categoria",
         "monthly": "Mensile",
         "subscriptions": "abbonamenti",
-        "subscription": "abbonamento"
+        "subscription": "abbonamento",
+        "noDataDescription": "Non ci sono abbonamenti disponibili per mostrare le categorie. Aggiungi alcuni abbonamenti per vedere la suddivisione per categoria."
     },
     "viewSub": {
         "viewSubscription": "Visualizza Abbonamento",
@@ -101,8 +101,8 @@
     },
     "credits": {
         "title": "Crediti e Attribuzioni",
-        "thanksTitle": "Grazie per aver usato SubTrack!",
-        "thanksMessage": "SubTrack è stato creato con passione per aiutarti a gestire i tuoi abbonamenti in modo più efficace.",
+        "thanksTitle": "Grazie per aver usato Sub Track!",
+        "thanksMessage": "Sub Track è stato creato con passione per aiutarti a gestire i tuoi abbonamenti in modo più efficace.",
         "developer": "Sviluppatore",
         "forTracking": "per la gestione degli abbonamenti",
         "madeWith": "Creato con",
