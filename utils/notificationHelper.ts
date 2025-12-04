@@ -9,11 +9,11 @@ export async function scheduleNotification(sub: SubscriptionType) {
     const messages = {
         en: {
             upcomingSubscription: "Upcoming Subscription {{name}}",
-            yourSubscription: "Your subscription to {{name}} ({{price}}) is renewing in {{time}} days."
+            yourSubscription: "Your subscription \"{{name}}\" (${{price}}) is renewing in {{time}} days."
         },
         it: {
             upcomingSubscription: "Rinnovo abbonamento {{name}}",
-            yourSubscription: "Il tuo abbonamento a {{name}} ({{price}}) si rinnoverà tra {{time}} giorni."
+            yourSubscription: "Il tuo abbonamento \"{{name}}\" (€{{price}}) si rinnoverà tra {{time}} giorni."
         }
     }
 
@@ -28,7 +28,8 @@ export async function scheduleNotification(sub: SubscriptionType) {
 
     triggerDate.setHours(9, 0, 0); // Set notification time to 9:00 AM
 
-    let trigger: Notifications.CalendarTriggerInput;
+    let triggerMonthly: Notifications.MonthlyTriggerInput | undefined;
+    let triggerYearly: Notifications.YearlyTriggerInput | undefined;
     let triggerDay = triggerDate.getDate();
     if (sub.billingCycle === 'monthly') {
         if (triggerDay > 28) {
@@ -36,21 +37,19 @@ export async function scheduleNotification(sub: SubscriptionType) {
         }
     }
     if(sub.billingCycle === 'monthly') {
-        trigger = {
-            type: Notifications.SchedulableTriggerInputTypes.CALENDAR,
+        triggerMonthly = {
+            type: Notifications.SchedulableTriggerInputTypes.MONTHLY,
             day: triggerDay,
             hour: triggerDate.getHours(),
             minute: triggerDate.getMinutes(),
-            repeats: true,
         };
     } else {
-        trigger = {
-            type: Notifications.SchedulableTriggerInputTypes.CALENDAR,
+        triggerYearly = {
+            type: Notifications.SchedulableTriggerInputTypes.YEARLY,
             month: triggerDate.getMonth() + 1,
             day: triggerDate.getDate(),
             hour: triggerDate.getHours(),
             minute: triggerDate.getMinutes(),
-            repeats: true,
         };
     }
 
@@ -68,7 +67,7 @@ export async function scheduleNotification(sub: SubscriptionType) {
                     .replace('{{time}}', sub.reminderDaysBefore.toString()),
                 data: { subId: sub.id },
             },
-            trigger,
+            trigger: (sub.billingCycle === 'monthly' ? triggerMonthly : triggerYearly)!,
         });
         return notificationId;
     } catch (error) {
