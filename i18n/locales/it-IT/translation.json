@@ -110,6 +110,13 @@
         "noResults": "Nessun abbonamento con l'etichetta \"{{name}}\"",
         "clearFilter": "Mostra tutti gli abbonamenti"
     },
+    "menu": {
+        "appearance": "Aspetto",
+        "light": "Chiaro",
+        "dark": "Scuro",
+        "system": "Sistema",
+        "language": "Lingua"
+    },
     "credits": {
         "title": "Crediti e Attribuzioni",
         "thanksTitle": "Grazie per aver usato Sub Track!",

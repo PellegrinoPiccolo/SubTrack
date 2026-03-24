@@ -1,0 +1,130 @@
+{
+    "tabBar": {
+        "home": "Inicio",
+        "categories": "Categorías",
+        "add": "Añadir Suscripción"
+    },
+    "addScreen": {
+        "title": "Añadir Suscripción",
+        "subTitle": "Introduce los detalles de tu suscripción aquí",
+        "name": "Nombre del Servicio",
+        "description": "Descripción del Servicio",
+        "descriptionPlaceholder": "Por ejemplo, Plan Premium, Plan Familiar, etc.",
+        "price": "Precio",
+        "billingCycle": "Ciclo de Facturación",
+        "link": "Enlace del Servicio",
+        "category": "Categoría",
+        "firstBillingDate": "Primera Fecha de Cobro",
+        "reminder": "Recuérdame",
+        "notifyMe": "Notifícame",
+        "dayBefore": "día antes",
+        "daysBefore": "días antes",
+        "weekBefore": "semana antes",
+        "weeksBefore": "semanas antes",
+        "addButton": "Añadir Suscripción",
+        "selectDate": "Selecciona una fecha",
+        "done": "Hecho",
+        "add": "Añadir Suscripción",
+        "errors": {
+            "requiredFields": "Por favor, completa todos los campos obligatorios."
+        }
+    },
+    "billingCycle": {
+        "monthly": "Mensual",
+        "yearly": "Anual"
+    },
+    "categories": {
+        "Entertainment": "Entretenimiento",
+        "Productivity": "Productividad",
+        "Fittnes&Health": "Fitness y Salud",
+        "Education": "Educación",
+        "Work": "Trabajo",
+        "Home": "Hogar",
+        "Other": "Otro",
+        "noData": "No hay suscripciones disponibles para mostrar categorías."
+    },
+    "home": {
+        "noSubscriptionsTitle": "Aún no hay suscripciones",
+        "noSubscriptionsMessage": "¡Empieza añadiendo una nueva suscripción!",
+        "trackSpending": "Controla tus gastos.",
+        "trackSpendingMessage": "Lleva un registro de todas tus suscripciones en un solo lugar.",
+        "getReminders": "Recibe recordatorios.",
+        "getRemindersMessage": "Nunca te pierdas una fecha de cobro con nuestros recordatorios.",
+        "analyzeCategories": "Analiza las categorías.",
+        "analyzeCategoriesMessage": "Descubre dónde gastas más y optimiza tus suscripciones.",
+        "clickToAdd": "Pulsa el botón '+' para añadir tu primera suscripción.",
+        "totalMonthly": "Gasto Mensual Total",
+        "totalYearly": "Gasto Anual Total",
+        "acrossAllSubscriptions": "en {{number}} suscripción(es)",
+        "activeSubscriptions": "Suscripciones Activas",
+        "totalSubs": "{{count}} en total",
+        "monthly": "Mensual",
+        "yearly": "Anual",
+        "nextBilling": "Próximo cobro: {{date}}",
+        "days": "días",
+        "today": "hoy",
+        "tomorrow": "mañana",
+        "viewCredits": "Ver Créditos y Atribuciones"
+    },
+    "category": {
+        "title": "Categorías",
+        "description": "Visualiza tus suscripciones por categoría.",
+        "noData": "No hay suscripciones disponibles para mostrar categorías.",
+        "categoryBreakdown": "Desglose por Categoría",
+        "monthly": "Mensual",
+        "subscriptions": "suscripciones",
+        "subscription": "suscripción",
+        "noDataDescription": "No hay suscripciones disponibles para mostrar categorías. Añade algunas suscripciones para ver el desglose."
+    },
+    "viewSub": {
+        "viewSubscription": "Ver Suscripción",
+        "editSubscription": "Editar Suscripción",
+        "deleteSubscription": "Eliminar Suscripción",
+        "areYouSureDelete": "¿Estás seguro de que quieres eliminar esta suscripción?",
+        "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "name": "Nombre del Servicio",
+        "description": "Descripción del Servicio",
+        "price": "Precio",
+        "billingCycle": "Ciclo de Facturación",
+        "link": "Enlace del Servicio",
+        "category": "Categoría",
+        "firstBillingDate": "Primera Fecha de Cobro",
+        "reminder": "Recuérdame",
+        "noReminderSet": "Sin recordatorio",
+        "dayBefore": "día antes",
+        "daysBefore": "días antes",
+        "weekBefore": "semana antes",
+        "weeksBefore": "semanas antes",
+        "saveChanges": "Guardar Cambios",
+        "nextBillingDate": "Próxima Fecha de Cobro",
+        "deleteConfirmationMessage": "¿Estás seguro de que quieres eliminar \"{{name}}\"? Esta acción no se puede deshacer."
+    },
+    "label": {
+        "add": "Etiquetas",
+        "all": "Todas",
+        "new": "Nueva",
+        "namePlaceholder": "Nombre de etiqueta",
+        "cancel": "Cancelar",
+        "create": "Crear",
+        "longPressToDelete": "Mantén pulsado para eliminar una etiqueta",
+        "noResults": "Sin suscripciones con la etiqueta \"{{name}}\"",
+        "clearFilter": "Mostrar todas las suscripciones"
+    },
+    "menu": {
+        "appearance": "Apariencia",
+        "light": "Claro",
+        "dark": "Oscuro",
+        "system": "Sistema",
+        "language": "Idioma"
+    },
+    "credits": {
+        "title": "Créditos y Atribuciones",
+        "thanksTitle": "¡Gracias por usar Sub Track!",
+        "thanksMessage": "Sub Track fue creado con pasión para ayudarte a gestionar tus suscripciones de forma más efectiva.",
+        "developer": "Desarrollador",
+        "forTracking": "para la gestión de suscripciones",
+        "madeWith": "Hecho con",
+        "iconCredits": "Créditos de Iconos"
+    }
+}

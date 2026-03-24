@@ -1,0 +1,130 @@
+{
+    "tabBar": {
+        "home": "Home",
+        "categories": "Kategorien",
+        "add": "Abo hinzufügen"
+    },
+    "addScreen": {
+        "title": "Abo hinzufügen",
+        "subTitle": "Gib hier deine Abo-Details ein",
+        "name": "Dienstname",
+        "description": "Dienstbeschreibung",
+        "descriptionPlaceholder": "Zum Beispiel Premium-Plan, Familienplan, usw.",
+        "price": "Preis",
+        "billingCycle": "Abrechnungszyklus",
+        "link": "Dienstlink",
+        "category": "Kategorie",
+        "firstBillingDate": "Erstes Abrechnungsdatum",
+        "reminder": "Erinnere mich",
+        "notifyMe": "Benachrichtige mich",
+        "dayBefore": "Tag vorher",
+        "daysBefore": "Tage vorher",
+        "weekBefore": "Woche vorher",
+        "weeksBefore": "Wochen vorher",
+        "addButton": "Abo hinzufügen",
+        "selectDate": "Datum auswählen",
+        "done": "Fertig",
+        "add": "Abo hinzufügen",
+        "errors": {
+            "requiredFields": "Bitte fülle alle Pflichtfelder aus."
+        }
+    },
+    "billingCycle": {
+        "monthly": "Monatlich",
+        "yearly": "Jährlich"
+    },
+    "categories": {
+        "Entertainment": "Unterhaltung",
+        "Productivity": "Produktivität",
+        "Fittnes&Health": "Fitness & Gesundheit",
+        "Education": "Bildung",
+        "Work": "Arbeit",
+        "Home": "Zuhause",
+        "Other": "Sonstiges",
+        "noData": "Keine Abos verfügbar, um Kategorien anzuzeigen."
+    },
+    "home": {
+        "noSubscriptionsTitle": "Noch keine Abos",
+        "noSubscriptionsMessage": "Fange an, indem du ein neues Abo hinzufügst!",
+        "trackSpending": "Verfolge deine Ausgaben.",
+        "trackSpendingMessage": "Behalte alle deine Abos an einem Ort im Überblick.",
+        "getReminders": "Erhalte Erinnerungen.",
+        "getRemindersMessage": "Verpasse nie ein Abrechnungsdatum mit unseren Erinnerungen.",
+        "analyzeCategories": "Analysiere Kategorien.",
+        "analyzeCategoriesMessage": "Sieh, wo du am meisten ausgibst, und optimiere deine Abos.",
+        "clickToAdd": "Tippe auf '+', um dein erstes Abo hinzuzufügen.",
+        "totalMonthly": "Gesamte Monatsausgaben",
+        "totalYearly": "Gesamte Jahresausgaben",
+        "acrossAllSubscriptions": "über {{number}} Abo(s)",
+        "activeSubscriptions": "Aktive Abos",
+        "totalSubs": "{{count}} gesamt",
+        "monthly": "Monatlich",
+        "yearly": "Jährlich",
+        "nextBilling": "Nächste Abrechnung: {{date}}",
+        "days": "Tage",
+        "today": "heute",
+        "tomorrow": "morgen",
+        "viewCredits": "Nachweise und Danksagungen anzeigen"
+    },
+    "category": {
+        "title": "Kategorien",
+        "description": "Zeige deine Abos nach Kategorie an.",
+        "noData": "Keine Abos verfügbar, um Kategorien anzuzeigen.",
+        "categoryBreakdown": "Kategorienübersicht",
+        "monthly": "Monatlich",
+        "subscriptions": "Abos",
+        "subscription": "Abo",
+        "noDataDescription": "Keine Abos verfügbar, um Kategorien anzuzeigen. Füge Abos hinzu, um die Übersicht zu sehen."
+    },
+    "viewSub": {
+        "viewSubscription": "Abo anzeigen",
+        "editSubscription": "Abo bearbeiten",
+        "deleteSubscription": "Abo löschen",
+        "areYouSureDelete": "Möchtest du dieses Abo wirklich löschen?",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "name": "Dienstname",
+        "description": "Dienstbeschreibung",
+        "price": "Preis",
+        "billingCycle": "Abrechnungszyklus",
+        "link": "Dienstlink",
+        "category": "Kategorie",
+        "firstBillingDate": "Erstes Abrechnungsdatum",
+        "reminder": "Erinnere mich",
+        "noReminderSet": "Keine Erinnerung gesetzt",
+        "dayBefore": "Tag vorher",
+        "daysBefore": "Tage vorher",
+        "weekBefore": "Woche vorher",
+        "weeksBefore": "Wochen vorher",
+        "saveChanges": "Änderungen speichern",
+        "nextBillingDate": "Nächstes Abrechnungsdatum",
+        "deleteConfirmationMessage": "Möchtest du \"{{name}}\" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+    },
+    "label": {
+        "add": "Labels",
+        "all": "Alle",
+        "new": "Neu",
+        "namePlaceholder": "Label-Name",
+        "cancel": "Abbrechen",
+        "create": "Erstellen",
+        "longPressToDelete": "Gedrückt halten, um ein Label zu löschen",
+        "noResults": "Keine Abos mit Label \"{{name}}\"",
+        "clearFilter": "Alle Abos anzeigen"
+    },
+    "menu": {
+        "appearance": "Erscheinungsbild",
+        "light": "Hell",
+        "dark": "Dunkel",
+        "system": "System",
+        "language": "Sprache"
+    },
+    "credits": {
+        "title": "Nachweise und Danksagungen",
+        "thanksTitle": "Danke, dass du Sub Track nutzt!",
+        "thanksMessage": "Sub Track wurde mit Leidenschaft entwickelt, um dir die Verwaltung deiner Abos zu erleichtern.",
+        "developer": "Entwickler",
+        "forTracking": "für die Abo-Verwaltung",
+        "madeWith": "Gemacht mit",
+        "iconCredits": "Icon-Nachweise"
+    }
+}

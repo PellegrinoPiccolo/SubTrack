@@ -111,6 +111,13 @@
         "noResults": "No subscriptions with label \"{{name}}\"",
         "clearFilter": "Show all subscriptions"
     },
+    "menu": {
+        "appearance": "Appearance",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System",
+        "language": "Language"
+    },
     "credits": {
         "title": "Credits and Attributions",
         "thanksTitle": "Thanks for using Sub Track!",

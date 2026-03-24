@@ -9,6 +9,7 @@ import * as SystemUI from 'expo-system-ui';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Updates from 'expo-updates';
 import { registerForPushNotificationsAsync } from '../utils/notificationsChannel'
+import MenuProvider from '../context/MenuContext'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -86,7 +87,9 @@ const _layout = () => {
   return (
     <ThemeProvider>
       <SubsProvider>
-        <RootLayout />
+        <MenuProvider>
+          <RootLayout />
+        </MenuProvider>
       </SubsProvider>
     </ThemeProvider>
   )

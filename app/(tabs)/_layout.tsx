@@ -16,11 +16,14 @@ import { useTranslation } from 'react-i18next'
 import Logo from '../../assets/icon.png'
 import { LinearGradient } from 'expo-linear-gradient'
 import MaskedView from '@react-native-masked-view/masked-view'
+import Menu from '../../assets/icons/menu.svg'
+import useMenu from '../../hook/MenuHook'
 
 const _layout = () => {
 
   const {t} = useTranslation();
   const router = useRouter();
+  const menu = useMenu();
 
   SplashScreen.preventAutoHideAsync();
 
@@ -117,10 +120,15 @@ const _layout = () => {
                 </LinearGradient>
               </MaskedView>
             </View>
-            <NativeButton pressFunction={() => changeTheme(theme === 'light' ? 'dark' : 'light', 'manual')}>
+            {/* <NativeButton pressFunction={() => changeTheme(theme === 'light' ? 'dark' : 'light', 'manual')}>
               <View style={{ paddingHorizontal: 10, paddingVertical: 10, backgroundColor: colorPalette.backgroundSecondary, borderRadius: 10 }}>
                 {theme === 'light' ? <BedTime width={20} height={20} fill={colorPalette.text} /> : 
                 <WbSun width={20} height={20} fill={colorPalette.text} /> }
+              </View>
+            </NativeButton> */}
+            <NativeButton pressFunction={() => menu.openMenu()}>
+              <View style={{ paddingHorizontal: 10, paddingVertical: 10, backgroundColor: colorPalette.backgroundSecondary, borderRadius: 10 }}>
+                <Menu width={20} height={20} fill={colorPalette.text} />
               </View>
             </NativeButton>
           </View>
