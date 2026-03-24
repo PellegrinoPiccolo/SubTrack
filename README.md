@@ -26,8 +26,8 @@ In a world full of micro-transactions, it's easy to lose track of where your mon
 ## 📥 Download
 
 <p align="center">
-  <a href="https://github.com/PellegrinoPiccolo/SubTrack/releases/download/V-1.0.0/application-d3a94a37-25b5-4b41-a101-607ebcb822d1.apk">
-    <img src="https://img.shields.io/badge/Download%20APK-v1.0.0-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download APK"/>
+  <a href="https://github.com/PellegrinoPiccolo/SubTrack/releases/latest/subtrack.apk">
+    <img src="https://img.shields.io/badge/Download%20APK-latest-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download APK"/>
   </a>
 </p>
 
