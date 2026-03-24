@@ -23,7 +23,7 @@ export async function scheduleNotification(sub: SubscriptionType) {
         if(!request.granted) return;
     }
 
-    const triggerDate = new Date(sub.firstBillingDate);
+    const triggerDate = new Date(sub.nextBillingDate);
     triggerDate.setDate(triggerDate.getDate() - sub.reminderDaysBefore);
 
     triggerDate.setHours(9, 0, 0); // Set notification time to 9:00 AM

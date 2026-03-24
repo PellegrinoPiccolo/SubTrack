@@ -38,7 +38,7 @@ const ViewSub = () => {
   const [link, setLink] = useState(subscription.link);
   const [billingCycle, setBillingCycle] = useState(subscription.billingCycle);
   const [category, setCategory] = useState(subscription.category);
-  const [firstBillingDate, setFirstBillingDate] = useState(new Date(subscription.firstBillingDate));
+  const [nextBillingDate, setNextBillingDate] = useState(new Date(subscription.nextBillingDate));
   const [reminder, setReminder] = useState(subscription.reminder);
   const isOn = useSharedValue(reminder);
   const [reminderDaysBefore, setReminderDaysBefore] = useState(subscription.reminderDaysBefore);
@@ -48,7 +48,7 @@ const ViewSub = () => {
 
   const calcNextBillingDate = () => {
     const today = new Date();
-    const firstBilling = new Date(subscription.firstBillingDate);
+    const firstBilling = new Date(subscription.nextBillingDate);
     let nextBilling = new Date(firstBilling);
 
     while (nextBilling < today) {
@@ -77,7 +77,7 @@ const ViewSub = () => {
       link,
       billingCycle,
       category,
-      firstBillingDate,
+      nextBillingDate,
       reminder,
       reminderDaysBefore,
       labels: selectedLabels,
@@ -101,7 +101,7 @@ const ViewSub = () => {
     setLink(subscription.link);
     setBillingCycle(subscription.billingCycle);
     setCategory(subscription.category);
-    setFirstBillingDate(new Date(subscription.firstBillingDate));
+    setNextBillingDate(new Date(subscription.nextBillingDate));
     setReminder(subscription.reminder);
     isOn.value = subscription.reminder;
     setReminderDaysBefore(subscription.reminderDaysBefore);
@@ -406,25 +406,25 @@ const ViewSub = () => {
 
               {/* First Billing Date */}
               <View style={styles.inputContainer}>
-                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.firstBillingDate')} <Text style={{ color: 'red' }}>*</Text></Text>
+                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.nextBillingDate')} <Text style={{ color: 'red' }}>*</Text></Text>
                 <Pressable
                   style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, paddingVertical: 20 }]}
                   onPress={() => setShowDatePicker(true)}
                 >
                   <Ionicons name="calendar" size={20} color={colorPalette.textSecondary} />
                   <Text style={{ color: colorPalette.text, fontSize: 16 }}>
-                    {firstBillingDate.toLocaleDateString()}
+                    {nextBillingDate.toLocaleDateString()}
                   </Text>
                   {showDatePicker && Platform.OS === 'android' && (
                     <DateTimePicker
-                      value={firstBillingDate}
-                      maximumDate={new Date()}
+                      value={nextBillingDate}
+                      minimumDate={new Date()}
                       mode="date"
                       display="default"
                       onChange={(event, selectedDate) => {
                         setShowDatePicker(false);
                         if (selectedDate) {
-                          setFirstBillingDate(selectedDate);
+                          setNextBillingDate(selectedDate);
                         }
                       }}
                     />
@@ -443,7 +443,7 @@ const ViewSub = () => {
                             </Pressable>
                           </View>
                           <DateTimePicker
-                            value={firstBillingDate}
+                            value={nextBillingDate}
                             mode="date"
                             locale={localDevice || 'en-US'}
                             display="spinner"
@@ -451,10 +451,10 @@ const ViewSub = () => {
                             themeVariant={colorPalette.text === '#000000' ? 'light' : 'dark'}
                             onChange={(event, selectedDate) => {
                               if (selectedDate) {
-                                setFirstBillingDate(selectedDate);
+                                setNextBillingDate(selectedDate);
                               }
                             }}
-                            maximumDate={new Date()}
+                            minimumDate={new Date()}
                             style={{ height: 200 }}
                           />
                         </View>

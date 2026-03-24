@@ -6,7 +6,7 @@ export interface SubscriptionType {
     link: string | null;
     billingCycle: 'monthly' | 'yearly';
     category: 'Entertainment' | 'Productivity' | 'Education' | 'Fittnes&Health' | 'Work' | 'Home' | 'Other';
-    firstBillingDate: Date;
+    nextBillingDate: Date;
     reminder: boolean;
     reminderDaysBefore: number;
     notificationId?: string | null;

@@ -40,7 +40,16 @@ const SubsProvider = ({ children }: { children: React.ReactNode }) => {
     const storedSubs = await AsyncStorage.getItem('subscriptions');
     const storedLabels = await AsyncStorage.getItem('labels');
     if (storedSubs) {
-      setSubs(JSON.parse(storedSubs));
+      const parsed = JSON.parse(storedSubs) as any[];
+      const migrated = parsed.map((sub) => {
+        if (sub.firstBillingDate && !sub.nextBillingDate) {
+          const { firstBillingDate, ...rest } = sub;
+          return { ...rest, nextBillingDate: firstBillingDate };
+        }
+        return sub;
+      }) as SubscriptionType[];
+      setSubs(migrated);
+      await AsyncStorage.setItem('subscriptions', JSON.stringify(migrated));
       setLabels(storedLabels ? JSON.parse(storedLabels) : []);
     }
     setLoadingSubs(false);

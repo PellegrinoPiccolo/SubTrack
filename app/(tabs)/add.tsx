@@ -29,7 +29,7 @@ const add = () => {
   const [link, setLink] = React.useState<string | null>(null);
   const [billingCycle, setBillingCycle] = React.useState<string>('monthly');
   const [category, setCategory] = React.useState<string>('Entertainment');
-  const [firstBillingDate, setFirstBillingDate] = React.useState<Date>(new Date());
+  const [nextBillingDate, setNextBillingDate] = React.useState<Date>(new Date());
   const [reminder, setReminder] = React.useState<boolean>(true);
   const isOn = useSharedValue(reminder);
   const [reminderDaysBefore, setReminderDaysBefore] = React.useState<number>(1);
@@ -47,7 +47,7 @@ const add = () => {
     setLink('');
     setBillingCycle('monthly');
     setCategory('Entertainment');
-    setFirstBillingDate(new Date());
+    setNextBillingDate(new Date());
     setReminder(true);
     setReminderDaysBefore(1);
     setSelectedLabels([]);
@@ -55,7 +55,7 @@ const add = () => {
   }
 
   const save = () => {
-    if(name.trim() === '' || price.trim() === '' || !billingCycle || !category || !firstBillingDate) {
+    if(name.trim() === '' || price.trim() === '' || !billingCycle || !category || !nextBillingDate) {
       setShowErrors(true);
       return;
     }
@@ -68,7 +68,7 @@ const add = () => {
       link,
       billingCycle: billingCycle as 'monthly' | 'yearly',
       category: category as 'Entertainment' | 'Productivity' | 'Education' | 'Fittnes&Health' | 'Work' | 'Home' | 'Other',
-      firstBillingDate,
+      nextBillingDate,
       reminder,
       reminderDaysBefore,
       labels: selectedLabels,
@@ -220,22 +220,22 @@ const add = () => {
           />
         </View>
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.firstBillingDate')} <Text style={{ color: 'red' }}>*</Text></Text>
+          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.nextBillingDate')} <Text style={{ color: 'red' }}>*</Text></Text>
           <Pressable style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, paddingVertical: 20 }]} onPress={() => setShowDatePicker(true)} >
             <Ionicons name="calendar" size={20} color={colorPalette.textSecondary} />
-            <Text style={{ color: firstBillingDate ? colorPalette.text : colorPalette.textSecondary, fontSize: 16 }}>
-              {firstBillingDate ? firstBillingDate.toLocaleDateString() : t('addScreen.selectDate')}
+            <Text style={{ color: nextBillingDate ? colorPalette.text : colorPalette.textSecondary, fontSize: 16 }}>
+              {nextBillingDate ? nextBillingDate.toLocaleDateString() : t('addScreen.selectDate')}
             </Text>
             {showDatePicker && Platform.OS === 'android' && (
               <DateTimePicker
-                value={firstBillingDate}
-                maximumDate={new Date()}
+                value={nextBillingDate}
+                minimumDate={new Date()}
                 mode="date"
                 display="default"
                 onChange={(event, selectedDate) => {
                   setShowDatePicker(false);
                   if (selectedDate) {
-                    setFirstBillingDate(selectedDate);
+                    setNextBillingDate(selectedDate);
                   }
                 }}
               />
@@ -259,7 +259,7 @@ const add = () => {
                       </View>
                       
                       <DateTimePicker
-                        value={firstBillingDate}
+                        value={nextBillingDate}
                         mode="date"
                         locale={localDevice || 'en-US'}
                         display="spinner" // Usa "spinner" o "inline" per iOS dentro la modale
@@ -267,10 +267,10 @@ const add = () => {
                         themeVariant={colorPalette.text === '#000000' ? 'light' : 'dark'} // Forza tema scuro/chiaro
                         onChange={(event, selectedDate) => {
                           if (selectedDate) {
-                            setFirstBillingDate(selectedDate);
+                            setNextBillingDate(selectedDate);
                           }
                         }}
-                        maximumDate={new Date()}
+                        minimumDate={new Date()}
                         style={{ height: 200 }} // Altezza fissa per lo spinner
                       />
                     </View>

@@ -53,9 +53,7 @@ const Home = () => {
   const calcDifferenceByToday = (sub: SubscriptionType) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Normalize to midnight
-    const firstBillingDate = new Date(sub.firstBillingDate);
-    firstBillingDate.setHours(0, 0, 0, 0); // Normalize to midnight
-    let nextBillingDate = new Date(firstBillingDate);
+    let nextBillingDate = new Date(sub.nextBillingDate);
     nextBillingDate.setHours(0, 0, 0, 0); // Normalize to midnight
     // Adjust next billing date to be in the future
     while (nextBillingDate <= today) {
@@ -407,7 +405,7 @@ const Home = () => {
                   </Text>
                 </View>
               )}
-              {sub.firstBillingDate && (
+              {sub.nextBillingDate && (
                 <View style={{ 
                   backgroundColor: getColorByDifferenceOfDays(sub) + '20', 
                   paddingHorizontal: 8, 
