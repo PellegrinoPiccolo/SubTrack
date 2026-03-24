@@ -13,11 +13,10 @@ import {Picker} from '@react-native-picker/picker';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SubscriptionType } from '../../types/SubscriptionType';
 import useSubs from '../../hook/SubsHook';
-import ToastManager, { Toast } from 'toastify-react-native'
 
 const add = () => {
 
-  const {colorPalette, theme} = useTheme();
+  const {colorPalette} = useTheme();
   const {t} = useTranslation();
   const [selectedLabels, setSelectedLabels] = React.useState<string[]>([]);
   const {addSub, labels, createLabel, deleteLabel} = useSubs();
@@ -37,7 +36,7 @@ const add = () => {
   
   const [showDatePicker, setShowDatePicker] = React.useState<boolean>(false);
 
-  const [errorMessage, setErrorMessage] = React.useState<string>('');
+  const [showErrors, setShowErrors] = React.useState<boolean>(false);
 
   const localDevice = getLocales()[0].languageCode;
 
@@ -57,9 +56,10 @@ const add = () => {
 
   const save = () => {
     if(name.trim() === '' || price.trim() === '' || !billingCycle || !category || !firstBillingDate) {
-      Toast.error(t('addScreen.errors.requiredFields') || 'Please fill all required fields.');
+      setShowErrors(true);
       return;
     }
+    setShowErrors(false);
     const newSub : SubscriptionType = {
       id: Date.now().toString(),
       name,
@@ -122,8 +122,8 @@ const add = () => {
       <View style={styles.formContainer}>
         {/* Form inputs will go here */}
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.name')} *</Text>
-          <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary }]} >
+          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.name')} <Text style={{ color: 'red' }}>*</Text></Text>
+          <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, borderWidth: 1, borderColor: showErrors && name.trim() === '' ? 'red' : 'transparent' }]} >
             <TextInput
               value={name}
               onChangeText={setName}
@@ -132,6 +132,9 @@ const add = () => {
               style={{ color: colorPalette.text, paddingVertical: 10, flex: 1 }}
             />
           </View>
+          {showErrors && name.trim() === '' && (
+            <Text style={{ color: 'red', fontSize: 12, marginTop: 2 }}>{t('addScreen.errors.requiredFields')}</Text>
+          )}
         </View>
         <View style={styles.inputContainer}>
           <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.description')}</Text>
@@ -148,8 +151,8 @@ const add = () => {
           </View>
         </View>
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.price')} *</Text>
-          <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary }]} >
+          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.price')} <Text style={{ color: 'red' }}>*</Text></Text>
+          <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, borderWidth: 1, borderColor: showErrors && price.trim() === '' ? 'red' : 'transparent' }]} >
             <Text style={{
               color: colorPalette.textSecondary,
               fontSize: 16,
@@ -163,6 +166,9 @@ const add = () => {
               style={{ color: colorPalette.text, paddingVertical: 10, flex: 1 }}
             />
           </View>
+          {showErrors && price.trim() === '' && (
+            <Text style={{ color: 'red', fontSize: 12, marginTop: 2 }}>{t('addScreen.errors.requiredFields')}</Text>
+          )}
         </View>
         <View style={styles.inputContainer}>
           <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.link')}</Text>
@@ -177,7 +183,7 @@ const add = () => {
           </View>
         </View>
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.billingCycle')} *</Text>
+          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.billingCycle')} <Text style={{ color: 'red' }}>*</Text></Text>
           <View style={[styles.billingCycleContainer, { backgroundColor: colorPalette.backgroundSecondary }]} >
             <Pressable style={[styles.billingCycleTextContainer, {backgroundColor: billingCycle === 'monthly' ? colorPalette.primary : 'transparent'}]} onPress={() => setBillingCycle('monthly')}>
               <Text style={{ color: billingCycle === 'monthly' ? 'white' : colorPalette.textSecondary, fontSize: 16 }}>{t(`billingCycle.monthly`)}</Text>
@@ -188,7 +194,7 @@ const add = () => {
           </View>
         </View>
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.category')} *</Text>
+          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.category')} <Text style={{ color: 'red' }}>*</Text></Text>
           <View style={{ width: '100%', flexDirection: 'row', gap: 10, flexWrap: 'wrap' }}>
             {
               Object.entries(t('categories', { returnObjects: true })).map(([key, value]: [string, string]) => (
@@ -214,7 +220,7 @@ const add = () => {
           />
         </View>
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.firstBillingDate')} *</Text>
+          <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.firstBillingDate')} <Text style={{ color: 'red' }}>*</Text></Text>
           <Pressable style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, paddingVertical: 20 }]} onPress={() => setShowDatePicker(true)} >
             <Ionicons name="calendar" size={20} color={colorPalette.textSecondary} />
             <Text style={{ color: firstBillingDate ? colorPalette.text : colorPalette.textSecondary, fontSize: 16 }}>
@@ -321,6 +327,7 @@ const add = () => {
             shadowOpacity: 0.27,
             shadowRadius: 4.65,
             elevation: 6,
+            opacity: name.trim() === '' || price.trim() === '' ? 0.35 : 1,
           }}
           onPress={save}
         >
@@ -342,8 +349,7 @@ const add = () => {
         </Pressable>
       </View>
     </ScrollView>
-    <ToastManager position="top" theme={theme === 'dark' ? 'dark' : 'light'} />
-    </>
+</>
   )
 }
 

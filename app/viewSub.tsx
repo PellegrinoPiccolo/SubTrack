@@ -14,12 +14,11 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import SwitchButton from '../components/SwitchButton';
 import { useSharedValue } from 'react-native-reanimated';
 import { Picker } from '@react-native-picker/picker';
-import ToastManager, { Toast } from 'toastify-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Linking from 'expo-linking';
 
 const ViewSub = () => {
-  const { colorPalette, theme } = useTheme();
+  const { colorPalette } = useTheme();
   const { t } = useTranslation();
   const router = useRouter();
   const params = useLocalSearchParams();
@@ -28,6 +27,7 @@ const ViewSub = () => {
   const subscription: SubscriptionType = JSON.parse(params.sub as string);
 
   const [isEditing, setIsEditing] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
 
@@ -64,9 +64,10 @@ const ViewSub = () => {
 
   const handleSave = () => {
     if (name.trim() === '' || price.trim() === '') {
-      Toast.error(t('addScreen.errors.requiredFields') || 'Please fill all required fields.');
+      setShowErrors(true);
       return;
     }
+    setShowErrors(false);
 
     const updatedSub: SubscriptionType = {
       ...subscription,
@@ -105,6 +106,7 @@ const ViewSub = () => {
     isOn.value = subscription.reminder;
     setReminderDaysBefore(subscription.reminderDaysBefore);
     setSelectedLabels(subscription.labels || []);
+    setShowErrors(false);
     setIsEditing(false);
   };
 
@@ -281,8 +283,8 @@ const ViewSub = () => {
             <View style={styles.editContainer}>
               {/* Name */}
               <View style={styles.inputContainer}>
-                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.name')} *</Text>
-                <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary }]}>
+                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.name')} <Text style={{ color: 'red' }}>*</Text></Text>
+                <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, borderWidth: 1, borderColor: showErrors && name.trim() === '' ? 'red' : 'transparent' }]}>
                   <TextInput
                     value={name}
                     onChangeText={setName}
@@ -291,6 +293,9 @@ const ViewSub = () => {
                     style={{ color: colorPalette.text, paddingVertical: 10, flex: 1 }}
                   />
                 </View>
+                {showErrors && name.trim() === '' && (
+                  <Text style={{ color: 'red', fontSize: 12, marginTop: 2 }}>{t('addScreen.errors.requiredFields')}</Text>
+                )}
               </View>
 
               {/* Description */}
@@ -311,8 +316,8 @@ const ViewSub = () => {
 
               {/* Price */}
               <View style={styles.inputContainer}>
-                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.price')} *</Text>
-                <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary }]}>
+                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.price')} <Text style={{ color: 'red' }}>*</Text></Text>
+                <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, borderWidth: 1, borderColor: showErrors && price.trim() === '' ? 'red' : 'transparent' }]}>
                   <Text style={{ color: colorPalette.textSecondary, fontSize: 16 }}>
                     {getLocales()[0].currencySymbol}
                   </Text>
@@ -325,6 +330,9 @@ const ViewSub = () => {
                     style={{ color: colorPalette.text, paddingVertical: 10, flex: 1 }}
                   />
                 </View>
+                {showErrors && price.trim() === '' && (
+                  <Text style={{ color: 'red', fontSize: 12, marginTop: 2 }}>{t('addScreen.errors.requiredFields')}</Text>
+                )}
               </View>
 
               {/* Link */}
@@ -343,7 +351,7 @@ const ViewSub = () => {
 
               {/* Billing Cycle */}
               <View style={styles.inputContainer}>
-                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.billingCycle')} *</Text>
+                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.billingCycle')} <Text style={{ color: 'red' }}>*</Text></Text>
                 <View style={[styles.billingCycleContainer, { backgroundColor: colorPalette.backgroundSecondary }]}>
                   <Pressable
                     style={[styles.billingCycleTextContainer, { backgroundColor: billingCycle === 'monthly' ? colorPalette.primary : 'transparent' }]}
@@ -366,7 +374,7 @@ const ViewSub = () => {
 
               {/* Category */}
               <View style={styles.inputContainer}>
-                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.category')} *</Text>
+                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.category')} <Text style={{ color: 'red' }}>*</Text></Text>
                 <View style={{ width: '100%', flexDirection: 'row', gap: 10, flexWrap: 'wrap' }}>
                   {Object.entries(t('categories', { returnObjects: true })).map(([key, value]: [string, string]) => (
                     <Pressable
@@ -398,7 +406,7 @@ const ViewSub = () => {
 
               {/* First Billing Date */}
               <View style={styles.inputContainer}>
-                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.firstBillingDate')} *</Text>
+                <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.firstBillingDate')} <Text style={{ color: 'red' }}>*</Text></Text>
                 <Pressable
                   style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, paddingVertical: 20 }]}
                   onPress={() => setShowDatePicker(true)}
@@ -507,6 +515,7 @@ const ViewSub = () => {
                   shadowRadius: 4.65,
                   elevation: 6,
                   marginTop: 20,
+                  opacity: name.trim() === '' || price.trim() === '' ? 0.35 : 1,
                 }}
                 onPress={handleSave}
               >
@@ -551,7 +560,6 @@ const ViewSub = () => {
         </View>
       </Modal>
 
-      <ToastManager position="top" theme={theme === 'dark' ? 'dark' : 'light'} />
     </>
   );
 };
