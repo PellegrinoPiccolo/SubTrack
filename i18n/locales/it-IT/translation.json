@@ -99,6 +99,17 @@
         "nextBillingDate": "Prossima Data di Fatturazione",
         "deleteConfirmationMessage": "Sei sicuro di voler eliminare \"{{name}}\"? Questa azione non può essere annullata."
     },
+    "label": {
+        "add": "Etichette",
+        "all": "Tutte",
+        "new": "Nuova",
+        "namePlaceholder": "Nome etichetta",
+        "cancel": "Annulla",
+        "create": "Crea",
+        "longPressToDelete": "Tieni premuto per eliminare un'etichetta",
+        "noResults": "Nessun abbonamento con l'etichetta \"{{name}}\"",
+        "clearFilter": "Mostra tutti gli abbonamenti"
+    },
     "credits": {
         "title": "Crediti e Attribuzioni",
         "thanksTitle": "Grazie per aver usato Sub Track!",
