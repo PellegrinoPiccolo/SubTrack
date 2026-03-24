@@ -10,4 +10,5 @@ export interface SubscriptionType {
     reminder: boolean;
     reminderDaysBefore: number;
     notificationId?: string | null;
+    labels?: string[];
 }

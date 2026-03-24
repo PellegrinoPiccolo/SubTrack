@@ -9,6 +9,7 @@ import { getLocales } from 'expo-localization';
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 import useSubs from '../hook/SubsHook';
+import LabelsPicker from '../components/LabelsPicker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SwitchButton from '../components/SwitchButton';
 import { useSharedValue } from 'react-native-reanimated';
@@ -23,7 +24,7 @@ const ViewSub = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const params = useLocalSearchParams();
-  const { modifySub, removeSub } = useSubs();
+  const { modifySub, removeSub, labels: allLabels } = useSubs();
 
   const subscription: SubscriptionType = JSON.parse(params.sub as string);
 
@@ -42,6 +43,7 @@ const ViewSub = () => {
   const [reminder, setReminder] = useState(subscription.reminder);
   const isOn = useSharedValue(reminder);
   const [reminderDaysBefore, setReminderDaysBefore] = useState(subscription.reminderDaysBefore);
+  const [selectedLabels, setSelectedLabels] = useState<string[]>(subscription.labels || []);
 
   const localDevice = getLocales()[0].languageCode;
 
@@ -78,6 +80,7 @@ const ViewSub = () => {
       firstBillingDate,
       reminder,
       reminderDaysBefore,
+      labels: selectedLabels,
     };
 
     modifySub(updatedSub);
@@ -102,6 +105,7 @@ const ViewSub = () => {
     setReminder(subscription.reminder);
     isOn.value = subscription.reminder;
     setReminderDaysBefore(subscription.reminderDaysBefore);
+    setSelectedLabels(subscription.labels || []);
     setIsEditing(false);
   };
 
@@ -230,6 +234,40 @@ const ViewSub = () => {
                 )}
               </View>
 
+              {/* Labels */}
+              {(subscription.labels ?? []).length > 0 && (
+                <View style={{ marginTop: 24 }}>
+                  <Text style={[styles.infoLabel, { color: colorPalette.textSecondary, marginBottom: 10 }]}>
+                    {t('label.add')}
+                  </Text>
+                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+                    {(subscription.labels ?? []).map((labelId) => {
+                      const label = allLabels?.find((l) => l.id === labelId);
+                      if (!label) return null;
+                      return (
+                        <View
+                          key={label.id}
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 6,
+                            paddingVertical: 6,
+                            paddingHorizontal: 12,
+                            borderRadius: 8,
+                            backgroundColor: label.color + '22',
+                            borderWidth: 1.5,
+                            borderColor: label.color,
+                          }}
+                        >
+                          <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: label.color }} />
+                          <Text style={{ color: colorPalette.text, fontSize: 14 }}>{label.name}</Text>
+                        </View>
+                      );
+                    })}
+                  </View>
+                </View>
+              )}
+
               {/* Delete Button */}
               <Pressable
                 onPress={() => setShowDeleteModal(true)}
@@ -343,6 +381,19 @@ const ViewSub = () => {
                     </Pressable>
                   ))}
                 </View>
+              </View>
+
+              {/* Labels */}
+              <View style={styles.inputContainer}>
+                <Text style={[styles.label, { color: colorPalette.text }]}>{t('label.add')}</Text>
+                <LabelsPicker
+                  selectedLabelIds={selectedLabels}
+                  onToggleLabel={(id) =>
+                    setSelectedLabels((prev) =>
+                      prev.includes(id) ? prev.filter((l) => l !== id) : [...prev, id]
+                    )
+                  }
+                />
               </View>
 
               {/* First Billing Date */}

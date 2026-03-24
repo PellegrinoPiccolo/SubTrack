@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import { getLocales } from 'expo-localization';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SwitchButton from '../../components/SwitchButton';
+import LabelsPicker from '../../components/LabelsPicker';
 import { useSharedValue } from 'react-native-reanimated';
 import {Picker} from '@react-native-picker/picker';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -18,7 +19,8 @@ const add = () => {
 
   const {colorPalette, theme} = useTheme();
   const {t} = useTranslation();
-  const {addSub} = useSubs();
+  const [selectedLabels, setSelectedLabels] = React.useState<string[]>([]);
+  const {addSub, labels, createLabel, deleteLabel} = useSubs();
 
   const router = useRouter();
 
@@ -49,6 +51,7 @@ const add = () => {
     setFirstBillingDate(new Date());
     setReminder(true);
     setReminderDaysBefore(1);
+    setSelectedLabels([]);
     router.back();
   }
 
@@ -68,6 +71,7 @@ const add = () => {
       firstBillingDate,
       reminder,
       reminderDaysBefore,
+      labels: selectedLabels,
     }
     addSub(newSub);
     close();
@@ -196,6 +200,17 @@ const add = () => {
               ))
             }
           </View>
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={[styles.label, { color: colorPalette.text }]}>{t('label.add')}</Text>
+          <LabelsPicker
+            selectedLabelIds={selectedLabels}
+            onToggleLabel={(id) =>
+              setSelectedLabels((prev) =>
+                prev.includes(id) ? prev.filter((l) => l !== id) : [...prev, id]
+              )
+            }
+          />
         </View>
         <View style={styles.inputContainer}>
           <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.firstBillingDate')} *</Text>

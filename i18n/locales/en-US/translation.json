@@ -100,6 +100,17 @@
         "nextBillingDate": "Next Billing Date",
         "deleteConfirmationMessage": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone."
     },
+    "label": {
+        "add": "Labels",
+        "all": "All",
+        "new": "New",
+        "namePlaceholder": "Label name",
+        "cancel": "Cancel",
+        "create": "Create",
+        "longPressToDelete": "Long press to delete a label",
+        "noResults": "No subscriptions with label \"{{name}}\"",
+        "clearFilter": "Show all subscriptions"
+    },
     "credits": {
         "title": "Credits and Attributions",
         "thanksTitle": "Thanks for using Sub Track!",

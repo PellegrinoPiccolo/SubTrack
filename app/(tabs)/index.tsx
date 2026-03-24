@@ -1,5 +1,5 @@
-import React from 'react'
-import { Image, Pressable, Text, View } from 'react-native'
+import React, { useMemo, useState } from 'react'
+import { Image, Pressable, ScrollView, Text, View } from 'react-native'
 import useTheme from '../../hook/ThemeHook';
 import useSubs from '../../hook/SubsHook';
 import { FlashList } from "@shopify/flash-list";
@@ -18,11 +18,15 @@ import { useRouter } from 'expo-router';
 const Home = () => {
 
   const {colorPalette} = useTheme();
-  const {subs} = useSubs();
-
+  const {subs, labels} = useSubs();
   const {t} = useTranslation();
-
   const router = useRouter();
+
+  const [activeLabel, setActiveLabel] = useState<string | null>(null);
+
+  const filteredSubs = activeLabel
+    ? subs.filter((sub) => sub.labels?.includes(activeLabel))
+    : subs;
 
   const calculateMonthlyPrice = (subs: SubscriptionType[]) => {
     return subs.reduce((total, sub) => {
@@ -98,6 +102,22 @@ const Home = () => {
   }
 
   const ListEmptyComponent = () => {
+    if (activeLabel !== null) {
+      const label = labels?.find((l) => l.id === activeLabel);
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 40, gap: 12 }}>
+          <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: (label?.color ?? colorPalette.primary) + '22', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ width: 16, height: 16, borderRadius: 8, backgroundColor: label?.color ?? colorPalette.primary }} />
+          </View>
+          <Text style={{ color: colorPalette.text, fontSize: 18, fontWeight: '600', textAlign: 'center' }}>
+            {t('label.noResults', { name: label?.name ?? '' })}
+          </Text>
+          <Pressable onPress={() => setActiveLabel(null)}>
+            <Text style={{ color: colorPalette.primary, fontSize: 14 }}>{t('label.clearFilter')}</Text>
+          </Pressable>
+        </View>
+      );
+    }
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
         <Text style={{ color: colorPalette.textSecondary, fontSize: 24, textAlign: 'center', fontWeight: 'bold' }}>
@@ -216,7 +236,7 @@ const Home = () => {
     )
   }
 
-  const ListHeaderComponent = () => {
+  const ListHeaderComponent = useMemo(() => {
     if(subs.length === 0) {
       return null;
     }
@@ -293,9 +313,60 @@ const Home = () => {
             {t('home.totalSubs', {count: subs.length, defaultValue: '({{count}} total)'})}
           </Text>
         </View>
+
+        {labels && labels.length > 0 && (
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginTop: 14 }}
+            contentContainerStyle={{ gap: 8, paddingRight: 4 }}
+          >
+            <Pressable
+              onPress={() => setActiveLabel(null)}
+              style={{
+                paddingHorizontal: 14,
+                paddingVertical: 7,
+                borderRadius: 20,
+                borderWidth: 1.5,
+                borderColor: activeLabel === null ? colorPalette.primary : colorPalette.border,
+                backgroundColor: activeLabel === null ? colorPalette.primary + '22' : colorPalette.backgroundSecondary,
+              }}
+            >
+              <Text style={{ color: activeLabel === null ? colorPalette.primary : colorPalette.textSecondary, fontSize: 13, fontWeight: '600' }}>
+                {t('label.all')}
+              </Text>
+            </Pressable>
+
+            {labels.map((label) => {
+              const isActive = activeLabel === label.id;
+              return (
+                <Pressable
+                  key={label.id}
+                  onPress={() => setActiveLabel(isActive ? null : label.id)}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 6,
+                    paddingHorizontal: 12,
+                    paddingVertical: 7,
+                    borderRadius: 20,
+                    borderWidth: 1.5,
+                    borderColor: isActive ? label.color : colorPalette.border,
+                    backgroundColor: isActive ? label.color + '22' : colorPalette.backgroundSecondary,
+                  }}
+                >
+                  <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: label.color }} />
+                  <Text style={{ color: isActive ? label.color : colorPalette.textSecondary, fontSize: 13, fontWeight: '600' }}>
+                    {label.name}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+        )}
       </View>
     )
-  }
+  }, [subs, labels, activeLabel, colorPalette])
 
   const SubComponent = ({sub}: {sub: SubscriptionType}) => {
     return (
@@ -414,7 +485,7 @@ const Home = () => {
   return (
     <View style={{ flex: 1, backgroundColor: colorPalette.background }}>
       <FlashList
-        data={subs.sort(sortByDifferenceByToday)}
+        data={filteredSubs.sort(sortByDifferenceByToday)}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <SubComponent sub={item} />}
         // @ts-ignore: estimatedItemSize is not present in current FlashList props typings
