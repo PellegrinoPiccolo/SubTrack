@@ -41,8 +41,7 @@
         "Education": "Education",
         "Work": "Work",
         "Home": "Home",
-        "Other": "Other",
-        "noData": "No subscriptions available to display categories."
+        "Other": "Other"
     },
     "home": {
         "noSubscriptionsTitle": "No subscriptions yet",
@@ -122,11 +121,9 @@
     },
     "credits": {
         "title": "Credits and Attributions",
-        "thanksTitle": "Thanks for using Sub Track!",
-        "thanksMessage": "Sub Track was created with passion to help you manage your subscriptions more effectively.",
+        "thanksTitle": "Thanks for using SubTrack!",
+        "thanksMessage": "SubTrack was created to help you manage your subscriptions more effectively.",
         "developer": "Developer",
-        "forTracking": "for subscription management",
-        "madeWith": "Made with",
         "iconCredits": "Icon Credits"
     }
 }

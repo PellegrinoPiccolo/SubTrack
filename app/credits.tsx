@@ -196,17 +196,6 @@ const Credits = () => {
             © {new Date().getFullYear()} SubTrack.{'\n'}All rights reserved.
           </Text>
         </View>
-
-        {/* Additional Info */}
-        <Text style={{ 
-          color: colorPalette.textSecondary, 
-          fontSize: 11,
-          textAlign: 'center',
-          marginTop: 20,
-          lineHeight: 16
-        }}>
-          {t('credits.madeWith', 'Made with')} ❤️ {t('credits.forTracking', 'for better subscription tracking')} by Pellegrino Piccolo
-        </Text>
       </ScrollView>
     </View>
   );

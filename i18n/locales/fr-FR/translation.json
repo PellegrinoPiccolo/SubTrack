@@ -41,8 +41,7 @@
         "Education": "Éducation",
         "Work": "Travail",
         "Home": "Maison",
-        "Other": "Autre",
-        "noData": "Aucun abonnement disponible pour afficher les catégories."
+        "Other": "Autre"
     },
     "home": {
         "noSubscriptionsTitle": "Aucun abonnement pour l'instant",
@@ -122,11 +121,9 @@
     },
     "credits": {
         "title": "Crédits et Attributions",
-        "thanksTitle": "Merci d'utiliser Sub Track !",
-        "thanksMessage": "Sub Track a été créé avec passion pour vous aider à gérer vos abonnements plus efficacement.",
+        "thanksTitle": "Merci d'utiliser SubTrack !",
+        "thanksMessage": "SubTrack a été créé pour vous aider à gérer vos abonnements plus efficacement.",
         "developer": "Développeur",
-        "forTracking": "pour la gestion des abonnements",
-        "madeWith": "Fait avec",
         "iconCredits": "Crédits des icônes"
     }
 }
