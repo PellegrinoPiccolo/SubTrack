@@ -121,11 +121,9 @@
     },
     "credits": {
         "title": "Crediti e Attribuzioni",
-        "thanksTitle": "Grazie per aver usato Sub Track!",
-        "thanksMessage": "Sub Track è stato creato con passione per aiutarti a gestire i tuoi abbonamenti in modo più efficace.",
+        "thanksTitle": "Grazie per usare SubTrack!",
+        "thanksMessage": "SubTrack è stato creato per aiutarti a gestire i tuoi abbonamenti in modo più efficace.",
         "developer": "Sviluppatore",
-        "forTracking": "per la gestione degli abbonamenti",
-        "madeWith": "Creato con",
         "iconCredits": "Crediti Icone"
     } 
 }

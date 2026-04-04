@@ -41,8 +41,7 @@
         "Education": "Bildung",
         "Work": "Arbeit",
         "Home": "Zuhause",
-        "Other": "Sonstiges",
-        "noData": "Keine Abos verfügbar, um Kategorien anzuzeigen."
+        "Other": "Sonstiges"
     },
     "home": {
         "noSubscriptionsTitle": "Noch keine Abos",
@@ -122,11 +121,9 @@
     },
     "credits": {
         "title": "Nachweise und Danksagungen",
-        "thanksTitle": "Danke, dass du Sub Track nutzt!",
-        "thanksMessage": "Sub Track wurde mit Leidenschaft entwickelt, um dir die Verwaltung deiner Abos zu erleichtern.",
+        "thanksTitle": "Danke, dass du SubTrack nutzt!",
+        "thanksMessage": "SubTrack wurde entwickelt, um dir die Verwaltung deiner Abos zu erleichtern.",
         "developer": "Entwickler",
-        "forTracking": "für die Abo-Verwaltung",
-        "madeWith": "Gemacht mit",
         "iconCredits": "Icon-Nachweise"
     }
 }
