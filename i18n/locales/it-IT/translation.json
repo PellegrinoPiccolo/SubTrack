@@ -64,7 +64,8 @@
         "days": "giorni",
         "today": "oggi",
         "tomorrow": "domani",
-        "viewCredits": "Visualizza Crediti e Attribuzioni"
+        "viewCredits": "Visualizza Crediti e Attribuzioni",
+        "viewPrivacyPolicy": "Informativa sulla Privacy"
     },
     "category": {
         "title": "Categorie",
@@ -125,5 +126,5 @@
         "thanksMessage": "SubTrack è stato creato per aiutarti a gestire i tuoi abbonamenti in modo più efficace.",
         "developer": "Sviluppatore",
         "iconCredits": "Crediti Icone"
-    } 
+    }
 }

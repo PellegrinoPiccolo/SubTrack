@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Image, Pressable, ScrollView, Text, View } from 'react-native'
+import { Image, Linking, Pressable, ScrollView, Text, View } from 'react-native'
 import useTheme from '../../hook/ThemeHook';
 import useSubs from '../../hook/SubsHook';
 import { FlashList } from "@shopify/flash-list";
@@ -436,10 +436,10 @@ const Home = () => {
         alignItems: 'center',
         marginTop: 20,
       }}>
-        <Pressable 
+        <Pressable
           onPress={() => router.push('/credits')}
-          style={{ 
-            flexDirection: 'row', 
+          style={{
+            flexDirection: 'row',
             alignItems: 'center',
             paddingVertical: 12,
             paddingHorizontal: 20,
@@ -458,14 +458,49 @@ const Home = () => {
           }}
         >
           <Ionicons name="information-circle-outline" size={20} color={colorPalette.primary} />
-          <Text style={{ 
-            color: colorPalette.text, 
+          <Text style={{
+            color: colorPalette.text,
             fontSize: 14,
             fontWeight: '600',
             marginLeft: 8,
             marginRight: 8
           }}>
             {t('home.viewCredits', 'View Credits & Attributions')}
+          </Text>
+          <Ionicons name="chevron-forward" size={18} color={colorPalette.textSecondary} />
+        </Pressable>
+
+        <Pressable
+          onPress={() => Linking.openURL('https://github.com/PellegrinoPiccolo/SubTrack/blob/main/PRIVACY_POLICY.md')}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingVertical: 12,
+            paddingHorizontal: 20,
+            marginTop: 10,
+            backgroundColor: colorPalette.backgroundSecondary,
+            borderRadius: 12,
+            borderWidth: 1,
+            borderColor: colorPalette.border,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.1,
+            shadowRadius: 3.84,
+            elevation: 3,
+          }}
+        >
+          <Ionicons name="shield-checkmark-outline" size={20} color={colorPalette.primary} />
+          <Text style={{
+            color: colorPalette.text,
+            fontSize: 14,
+            fontWeight: '600',
+            marginLeft: 8,
+            marginRight: 8
+          }}>
+            {t('home.viewPrivacyPolicy', 'Privacy Policy')}
           </Text>
           <Ionicons name="chevron-forward" size={18} color={colorPalette.textSecondary} />
         </Pressable>

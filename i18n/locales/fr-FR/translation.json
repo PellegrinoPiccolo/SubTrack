@@ -64,7 +64,8 @@
         "days": "jours",
         "today": "aujourd'hui",
         "tomorrow": "demain",
-        "viewCredits": "Voir les Crédits et Attributions"
+        "viewCredits": "Voir les Crédits et Attributions",
+        "viewPrivacyPolicy": "Politique de Confidentialité"
     },
     "category": {
         "title": "Catégories",

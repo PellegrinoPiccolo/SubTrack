@@ -64,7 +64,8 @@
         "days": "Tage",
         "today": "heute",
         "tomorrow": "morgen",
-        "viewCredits": "Nachweise und Danksagungen anzeigen"
+        "viewCredits": "Nachweise und Danksagungen anzeigen",
+        "viewPrivacyPolicy": "Datenschutzerklärung"
     },
     "category": {
         "title": "Kategorien",
