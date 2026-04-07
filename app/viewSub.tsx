@@ -420,10 +420,9 @@ const ViewSub = () => {
                   {showDatePicker && Platform.OS === 'android' && (
                     <DateTimePicker
                       value={firstBillingDate}
-                      maximumDate={new Date()}
                       mode="date"
                       display="default"
-                      onChange={(event, selectedDate) => {
+                      onChange={(_, selectedDate) => {
                         setShowDatePicker(false);
                         if (selectedDate) {
                           setFirstBillingDate(selectedDate);
@@ -451,12 +450,11 @@ const ViewSub = () => {
                             display="spinner"
                             textColor={colorPalette.text}
                             themeVariant={colorPalette.text === '#000000' ? 'light' : 'dark'}
-                            onChange={(event, selectedDate) => {
+                            onChange={(_, selectedDate) => {
                               if (selectedDate) {
                                 setFirstBillingDate(selectedDate);
                               }
                             }}
-                            maximumDate={new Date()}
                             style={{ height: 200 }}
                           />
                         </View>

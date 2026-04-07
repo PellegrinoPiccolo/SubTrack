@@ -23,18 +23,30 @@ export async function scheduleNotification(sub: SubscriptionType) {
         if(!request.granted) return;
     }
 
-    const triggerDate = new Date(sub.firstBillingDate);
-    triggerDate.setDate(triggerDate.getDate() - sub.reminderDaysBefore);
+    // Calcola la prossima data di addebito a partire dalla data selezionata
+    const today = new Date();
+    const billingDate = new Date(sub.firstBillingDate);
+    let nextBillingDate = new Date(billingDate);
 
-    triggerDate.setHours(9, 0, 0); // Set notification time to 9:00 AM
+    while (nextBillingDate <= today) {
+        if (sub.billingCycle === 'monthly') {
+            nextBillingDate.setMonth(nextBillingDate.getMonth() + 1);
+        } else {
+            nextBillingDate.setFullYear(nextBillingDate.getFullYear() + 1);
+        }
+    }
+
+    // Notifica N giorni prima della prossima data di addebito
+    const triggerDate = new Date(nextBillingDate);
+    triggerDate.setDate(triggerDate.getDate() - sub.reminderDaysBefore);
+    triggerDate.setHours(9, 0, 0, 0);
 
     let triggerMonthly: Notifications.MonthlyTriggerInput | undefined;
     let triggerYearly: Notifications.YearlyTriggerInput | undefined;
     let triggerDay = triggerDate.getDate();
     if (sub.billingCycle === 'monthly') {
-        if (triggerDay > 28) {
-            triggerDay = 28; 
-        }
+        if (triggerDay < 1) triggerDay = 1;
+        if (triggerDay > 28) triggerDay = 28;
     }
     if(sub.billingCycle === 'monthly') {
         triggerMonthly = {

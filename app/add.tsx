@@ -222,7 +222,6 @@ const add = () => {
             {showDatePicker && Platform.OS === 'android' && (
               <DateTimePicker
                 value={firstBillingDate}
-                maximumDate={new Date()}
                 mode="date"
                 display="default"
                 onChange={(event, selectedDate) => {
@@ -263,7 +262,6 @@ const add = () => {
                             setFirstBillingDate(selectedDate);
                           }
                         }}
-                        maximumDate={new Date()}
                         style={{ height: 200 }} // Altezza fissa per lo spinner
                       />
                     </View>
