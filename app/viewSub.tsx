@@ -6,6 +6,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { ImageForCategory } from '../constants/ImageForCategory';
 import { getLocales } from 'expo-localization';
+import useCurrency from '../hook/CurrencyHook';
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 import useSubs from '../hook/SubsHook';
@@ -20,6 +21,7 @@ import * as Linking from 'expo-linking';
 const ViewSub = () => {
   const { colorPalette } = useTheme();
   const { t } = useTranslation();
+  const { currencySymbol } = useCurrency();
   const router = useRouter();
   const params = useLocalSearchParams();
   const { modifySub, removeSub, labels: allLabels } = useSubs();
@@ -168,7 +170,7 @@ const ViewSub = () => {
                 >
                   <Text style={styles.priceLabel}>{t('viewSub.price')}</Text>
                   <Text style={styles.priceAmount}>
-                    {getLocales()[0].currencySymbol}{subscription.price}
+                    {currencySymbol}{subscription.price}
                   </Text>
                   <Text style={styles.billingCycleText}>
                     /{subscription.billingCycle === 'monthly' ? t('billingCycle.monthly') : t('billingCycle.yearly')}
@@ -319,7 +321,7 @@ const ViewSub = () => {
                 <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.price')} <Text style={{ color: 'red' }}>*</Text></Text>
                 <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, borderWidth: 1, borderColor: showErrors && price.trim() === '' ? 'red' : 'transparent' }]}>
                   <Text style={{ color: colorPalette.textSecondary, fontSize: 16 }}>
-                    {getLocales()[0].currencySymbol}
+                    {currencySymbol}
                   </Text>
                   <TextInput
                     value={price}

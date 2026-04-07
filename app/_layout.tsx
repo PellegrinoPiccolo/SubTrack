@@ -11,6 +11,7 @@ import * as NavigationBar from 'expo-navigation-bar';
 import * as Updates from 'expo-updates';
 import { registerForPushNotificationsAsync } from '../utils/notificationsChannel'
 import MenuProvider from '../context/MenuContext'
+import CurrencyProvider from '../context/CurrencyContext'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -89,9 +90,11 @@ const _layout = () => {
     <I18nextProvider i18n={i18n}>
       <ThemeProvider>
         <SubsProvider>
-          <MenuProvider>
-            <RootLayout />
-          </MenuProvider>
+          <CurrencyProvider>
+            <MenuProvider>
+              <RootLayout />
+            </MenuProvider>
+          </CurrencyProvider>
         </SubsProvider>
       </ThemeProvider>
     </I18nextProvider>

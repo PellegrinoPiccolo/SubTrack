@@ -8,7 +8,7 @@ import AttachMoney from '../../assets/icons/attach_money.svg';
 import BarChart from '../../assets/icons/bar_chart.svg';
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
-import { getLocales } from 'expo-localization';
+import useCurrency from '../../hook/CurrencyHook';
 import { SubscriptionType } from '../../types/SubscriptionType';
 import CurrencyExchange from '../../assets/icons/currency_exchange.svg';
 import CalendarToday from '../../assets/icons/calendar_today.svg';
@@ -20,6 +20,7 @@ const Home = () => {
   const {colorPalette} = useTheme();
   const {subs, labels} = useSubs();
   const {t} = useTranslation();
+  const { currencySymbol } = useCurrency();
   const router = useRouter();
 
   const [activeLabel, setActiveLabel] = useState<string | null>(null);
@@ -269,7 +270,7 @@ const Home = () => {
                 </Text>
               </View>
               <Text style={{ color: 'white', fontSize: 28, fontWeight: 'bold', marginTop: 8 }}>
-                {`${getLocales()[0].currencySymbol}${calculateMonthlyPrice(subs).toFixed(2)}`}
+                {`${currencySymbol}${calculateMonthlyPrice(subs).toFixed(2)}`}
               </Text>
               <Text style={{ color: 'white', fontSize: 14, marginTop: 4 }}>
                 {t('home.acrossAllSubscriptions', {number: subs.length, defaultValue: 'Across all {{number}} subscriptions'})}
@@ -302,7 +303,7 @@ const Home = () => {
             </Text>
           </View>
           <Text style={{ color: colorPalette.primary, fontSize: 28, fontWeight: 'bold', marginTop: 8 }}>
-            {`${getLocales()[0].currencySymbol}${calculateYearlyPrice(subs).toFixed(2)}`}
+            {`${currencySymbol}${calculateYearlyPrice(subs).toFixed(2)}`}
           </Text>
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 30, justifyContent: 'space-between'}}>
@@ -366,7 +367,7 @@ const Home = () => {
         )}
       </View>
     )
-  }, [subs, labels, activeLabel, colorPalette, t])
+  }, [subs, labels, activeLabel, colorPalette, t, currencySymbol])
 
   const SubComponent = ({sub}: {sub: SubscriptionType}) => {
     return (
@@ -385,7 +386,7 @@ const Home = () => {
               <Text style={{ color: colorPalette.text, fontSize: 18, fontWeight: '600', width: '70%' }} numberOfLines={1} ellipsizeMode='tail'>{sub.name}</Text>
               <View style={{ flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                 <Text style={{ color: colorPalette.text, fontSize: 18, marginTop: 4 }}>
-                  {`${getLocales()[0].currencySymbol}${sub.price}`}
+                  {`${currencySymbol}${sub.price}`}
                 </Text>
                 <Text style={{ color: colorPalette.textSecondary, fontSize: 12, marginTop: 4 }}>
                   /{sub.billingCycle === 'monthly' ? t('home.monthly', 'Monthly') : t('home.yearly', 'Yearly')}

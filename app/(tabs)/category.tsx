@@ -4,13 +4,14 @@ import useTheme from '../../hook/ThemeHook';
 import { useTranslation } from 'react-i18next';
 import { Pie, PolarChart } from "victory-native";
 import useSubs from '../../hook/SubsHook';
-import { getLocales } from 'expo-localization';
+import useCurrency from '../../hook/CurrencyHook';
 
 const Category = () => {
 
   const {colorPalette} = useTheme();
   const {t} = useTranslation();
   const {subs} = useSubs();
+  const { currencySymbol } = useCurrency();
 
   const calcMonthlyPriceByCategory = (category: string) => {
     let total = 0;
@@ -203,7 +204,7 @@ const Category = () => {
                   <Text style={{color: colorPalette.text, fontSize: 18}}>{t(`categories.${item.label}`)}</Text>
                 </View>
                 <View style={{flexDirection: 'column', alignItems: 'center', gap: 1}}>
-                  <Text style={{fontSize: 18, color: colorPalette.text}}>{getLocales()[0].currencySymbol} {calcMonthlyPriceByCategory(item.label).toFixed(2)}</Text>
+                  <Text style={{fontSize: 18, color: colorPalette.text}}>{currencySymbol} {calcMonthlyPriceByCategory(item.label).toFixed(2)}</Text>
                   <Text style={{fontSize: 16, color: colorPalette.textSecondary}}>/{t('category.monthly')}</Text>
                 </View>
               </View>

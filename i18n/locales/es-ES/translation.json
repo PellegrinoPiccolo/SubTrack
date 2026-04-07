@@ -118,7 +118,8 @@
         "light": "Claro",
         "dark": "Oscuro",
         "system": "Sistema",
-        "language": "Idioma"
+        "language": "Idioma",
+        "currency": "Moneda"
     },
     "credits": {
         "title": "Créditos y Atribuciones",

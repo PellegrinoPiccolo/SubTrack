@@ -118,7 +118,8 @@
         "light": "Hell",
         "dark": "Dunkel",
         "system": "System",
-        "language": "Sprache"
+        "language": "Sprache",
+        "currency": "Währung"
     },
     "credits": {
         "title": "Nachweise und Danksagungen",

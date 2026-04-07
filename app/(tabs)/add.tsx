@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { getLocales } from 'expo-localization';
+import useCurrency from '../../hook/CurrencyHook';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SwitchButton from '../../components/SwitchButton';
 import LabelsPicker from '../../components/LabelsPicker';
@@ -18,6 +19,7 @@ const add = () => {
 
   const {colorPalette} = useTheme();
   const {t} = useTranslation();
+  const { currencySymbol } = useCurrency();
   const [selectedLabels, setSelectedLabels] = React.useState<string[]>([]);
   const {addSub, labels, createLabel, deleteLabel} = useSubs();
 
@@ -156,7 +158,7 @@ const add = () => {
             <Text style={{
               color: colorPalette.textSecondary,
               fontSize: 16,
-            }}>{getLocales()[0].currencySymbol}</Text>
+            }}>{currencySymbol}</Text>
             <TextInput
               value={price}
               onChangeText={(text) => setPrice(text.replace(',', '.').replace(/[^0-9,.]/g, '').replace(/(\..*)\./g, '$1'))}

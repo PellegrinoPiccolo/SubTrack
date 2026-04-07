@@ -118,7 +118,8 @@
         "light": "Clair",
         "dark": "Sombre",
         "system": "Système",
-        "language": "Langue"
+        "language": "Langue",
+        "currency": "Devise"
     },
     "credits": {
         "title": "Crédits et Attributions",
