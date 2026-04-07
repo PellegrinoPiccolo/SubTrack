@@ -2,6 +2,7 @@
     "tabBar": {
         "home": "Home",
         "categories": "Categories",
+        "wallet": "Wallet",
         "add": "Add Subscription"
     },
     "addScreen": {
@@ -120,6 +121,24 @@
         "system": "System",
         "language": "Language",
         "currency": "Currency"
+    },
+    "wallet": {
+        "overview": "Financial Overview",
+        "monthlyTotal": "Total Monthly Spending",
+        "yearly": "Yearly",
+        "daily": "Daily",
+        "subscriptions": "Subscriptions",
+        "billingBreakdown": "Breakdown by Cycle",
+        "monthlySubs": "Monthly",
+        "yearlySubs": "Yearly",
+        "sub": "subscription",
+        "subs": "subscriptions",
+        "upcomingRenewals": "Upcoming Renewals",
+        "next30Days": "30 days",
+        "byExpense": "By Monthly Cost",
+        "month": "month",
+        "noData": "No subscriptions",
+        "noDataMessage": "Add your subscriptions to see the detailed financial summary."
     },
     "credits": {
         "title": "Credits and Attributions",

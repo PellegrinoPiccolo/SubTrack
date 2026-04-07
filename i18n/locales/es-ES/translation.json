@@ -2,6 +2,7 @@
     "tabBar": {
         "home": "Inicio",
         "categories": "Categorías",
+        "wallet": "Cartera",
         "add": "Añadir Suscripción"
     },
     "addScreen": {
@@ -120,6 +121,24 @@
         "system": "Sistema",
         "language": "Idioma",
         "currency": "Moneda"
+    },
+    "wallet": {
+        "overview": "Resumen Financiero",
+        "monthlyTotal": "Gasto Mensual Total",
+        "yearly": "Anual",
+        "daily": "Diario",
+        "subscriptions": "Suscripciones",
+        "billingBreakdown": "Desglose por Ciclo",
+        "monthlySubs": "Mensuales",
+        "yearlySubs": "Anuales",
+        "sub": "suscripción",
+        "subs": "suscripciones",
+        "upcomingRenewals": "Renovaciones Próximas",
+        "next30Days": "30 días",
+        "byExpense": "Por Coste Mensual",
+        "month": "mes",
+        "noData": "Sin suscripciones",
+        "noDataMessage": "Añade tus suscripciones para ver el resumen financiero detallado."
     },
     "credits": {
         "title": "Créditos y Atribuciones",

@@ -2,7 +2,7 @@
     "tabBar": {
         "home": "Home",
         "categories": "Categorie",
-        "add": "Aggiungi Abbonamento"
+        "wallet": "Portafoglio"
     },
     "addScreen": {
         "title": "Aggiungi Abbonamento",
@@ -120,6 +120,24 @@
         "system": "Sistema",
         "language": "Lingua",
         "currency": "Valuta"
+    },
+    "wallet": {
+        "overview": "Panoramica Finanziaria",
+        "monthlyTotal": "Spesa Mensile Totale",
+        "yearly": "Annuale",
+        "daily": "Giornaliero",
+        "subscriptions": "Abbonamenti",
+        "billingBreakdown": "Suddivisione per Ciclo",
+        "monthlySubs": "Mensili",
+        "yearlySubs": "Annuali",
+        "sub": "abbonamento",
+        "subs": "abbonamenti",
+        "upcomingRenewals": "Rinnovi Imminenti",
+        "next30Days": "30 giorni",
+        "byExpense": "Per Costo Mensile",
+        "month": "mese",
+        "noData": "Nessun abbonamento",
+        "noDataMessage": "Aggiungi i tuoi abbonamenti per vedere il riepilogo finanziario dettagliato."
     },
     "credits": {
         "title": "Crediti e Attribuzioni",

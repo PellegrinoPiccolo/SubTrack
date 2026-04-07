@@ -1,19 +1,20 @@
 import React from 'react'
 import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
-import useTheme from '../../hook/ThemeHook';
+import useTheme from '../hook/ThemeHook';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { getLocales } from 'expo-localization';
-import useCurrency from '../../hook/CurrencyHook';
+import useCurrency from '../hook/CurrencyHook';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import SwitchButton from '../../components/SwitchButton';
-import LabelsPicker from '../../components/LabelsPicker';
+import SwitchButton from '../components/SwitchButton';
+import LabelsPicker from '../components/LabelsPicker';
 import { useSharedValue } from 'react-native-reanimated';
 import {Picker} from '@react-native-picker/picker';
 import { LinearGradient } from 'expo-linear-gradient';
-import { SubscriptionType } from '../../types/SubscriptionType';
-import useSubs from '../../hook/SubsHook';
+import { SubscriptionType } from '../types/SubscriptionType';
+import useSubs from '../hook/SubsHook';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const add = () => {
 
@@ -79,48 +80,38 @@ const add = () => {
     close();
   }
 
+  const insets = useSafeAreaInsets();
+
   return (
     <>
+    <View style={{ 
+        paddingTop: Platform.OS === 'android' ? insets.top : 10,
+        paddingBottom: 10,
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        justifyContent: 'space-between',
+        paddingHorizontal: 16,
+        borderBottomColor: colorPalette.border,
+        borderBottomWidth: 1,
+        backgroundColor: colorPalette.background
+      }}>
+        <Pressable onPress={() => router.back()} style={{ padding: 8 }}>
+          <Ionicons name="arrow-back" size={24} color={colorPalette.text} />
+        </Pressable>
+        <Text style={{ 
+          color: colorPalette.text, 
+          fontSize: 18, 
+          fontWeight: 'bold',
+          flex: 1,
+          marginLeft: 16
+        }}>
+          {t('addScreen.title', 'Add Subscription')}
+        </Text>
+      </View>
     <ScrollView showsVerticalScrollIndicator={false} style={{ 
       flex: 1, 
       backgroundColor: colorPalette.background,
     }}>
-      <View style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderRadius: 10,
-        marginTop: 20,
-        marginHorizontal: 15,
-        paddingVertical: 10,
-      }}>
-        <View style={{
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-        }}>
-          <Text style={{
-            color: colorPalette.text,
-            fontSize: 20,
-            fontWeight: 500,
-          }}>
-            {t('addScreen.title')}
-          </Text>
-          <Text style={{
-            color: colorPalette.textSecondary,
-            fontSize: 14,
-            marginTop: 5,
-          }}>
-            {t('addScreen.subTitle')}
-          </Text>
-        </View>
-        <Pressable onPress={close} style={{
-          backgroundColor: colorPalette.backgroundSecondary,
-          padding: 10,
-          borderRadius: 10,
-        }}>
-          <Ionicons name="close" size={20} color={colorPalette.text} />
-        </Pressable>
-      </View>
       <View style={styles.formContainer}>
         {/* Form inputs will go here */}
         <View style={styles.inputContainer}>
@@ -226,7 +217,7 @@ const add = () => {
           <Pressable style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, paddingVertical: 20 }]} onPress={() => setShowDatePicker(true)} >
             <Ionicons name="calendar" size={20} color={colorPalette.textSecondary} />
             <Text style={{ color: firstBillingDate ? colorPalette.text : colorPalette.textSecondary, fontSize: 16 }}>
-              {firstBillingDate ? firstBillingDate.toLocaleDateString() : t('addScreen.selectDate')}
+              {firstBillingDate ? firstBillingDate.toLocaleDateString(localDevice || 'en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }) : t('addScreen.selectDate')}
             </Text>
             {showDatePicker && Platform.OS === 'android' && (
               <DateTimePicker

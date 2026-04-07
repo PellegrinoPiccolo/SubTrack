@@ -14,6 +14,7 @@ import CurrencyExchange from '../../assets/icons/currency_exchange.svg';
 import CalendarToday from '../../assets/icons/calendar_today.svg';
 import { ImageForCategory } from '../../constants/ImageForCategory';
 import { useRouter } from 'expo-router';
+import TabBarButton from '../../components/TabBarButton';
 
 const Home = () => {
 
@@ -532,6 +533,9 @@ const Home = () => {
         ListFooterComponent={ListFooterComponent}
         showsVerticalScrollIndicator={false}
         />
+      <View style={{ position: 'absolute', bottom: -10, right: 20 }}>
+        <TabBarButton onPress={() => router.push('/add')} />
+      </View>
     </View>
   )
 }

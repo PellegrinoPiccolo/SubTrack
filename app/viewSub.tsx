@@ -61,7 +61,7 @@ const ViewSub = () => {
       }
     }
 
-    return nextBilling.toLocaleDateString();
+    return nextBilling.toLocaleDateString(localDevice || 'en-US', { day: '2-digit', month: '2-digit', year: 'numeric' });
   };
 
   const handleSave = () => {
@@ -415,7 +415,7 @@ const ViewSub = () => {
                 >
                   <Ionicons name="calendar" size={20} color={colorPalette.textSecondary} />
                   <Text style={{ color: colorPalette.text, fontSize: 16 }}>
-                    {firstBillingDate.toLocaleDateString()}
+                    {firstBillingDate.toLocaleDateString(localDevice || 'en-US', { day: '2-digit', month: '2-digit', year: 'numeric' })}
                   </Text>
                   {showDatePicker && Platform.OS === 'android' && (
                     <DateTimePicker

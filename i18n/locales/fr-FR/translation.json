@@ -2,6 +2,7 @@
     "tabBar": {
         "home": "Accueil",
         "categories": "Catégories",
+        "wallet": "Portefeuille",
         "add": "Ajouter un abonnement"
     },
     "addScreen": {
@@ -120,6 +121,24 @@
         "system": "Système",
         "language": "Langue",
         "currency": "Devise"
+    },
+    "wallet": {
+        "overview": "Vue d'ensemble financière",
+        "monthlyTotal": "Dépenses Mensuelles Totales",
+        "yearly": "Annuel",
+        "daily": "Journalier",
+        "subscriptions": "Abonnements",
+        "billingBreakdown": "Répartition par Cycle",
+        "monthlySubs": "Mensuels",
+        "yearlySubs": "Annuels",
+        "sub": "abonnement",
+        "subs": "abonnements",
+        "upcomingRenewals": "Renouvellements à Venir",
+        "next30Days": "30 jours",
+        "byExpense": "Par Coût Mensuel",
+        "month": "mois",
+        "noData": "Aucun abonnement",
+        "noDataMessage": "Ajoutez vos abonnements pour voir le résumé financier détaillé."
     },
     "credits": {
         "title": "Crédits et Attributions",

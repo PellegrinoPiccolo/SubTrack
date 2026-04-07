@@ -15,6 +15,8 @@ import { LinearGradient } from 'expo-linear-gradient'
 import MaskedView from '@react-native-masked-view/masked-view'
 import Menu from '../../assets/icons/menu.svg'
 import useMenu from '../../hook/MenuHook'
+import Wallet from '../../assets/icons/wallet.svg'
+import WalletFilled from '../../assets/icons/wallet_filled.svg'
 
 const _layout = () => {
 
@@ -163,17 +165,32 @@ const _layout = () => {
         }} 
       />
       <Tabs.Screen 
-        name="add" 
-        options={{
-          tabBarButton: TabBarButton,
-          tabBarLabel: () => null,
-          tabBarIcon: () => null,
+        name="wallet" 
+        options={{ 
           tabBarShowLabel: false,
+          tabBarIcon: ({focused}) => {
+            return focused ? 
+            <View style={{
+              backgroundColor: colorPalette.tertiary + '33',
+              borderRadius: 15,
+              padding: 5,
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 65,
+              height: 65,
+              marginTop: 15
+            }}>
+              <WalletFilled width={30} height={30} fill={colorPalette.tertiary} /> 
+              <Text style={{ color: colorPalette.tertiary, fontSize: 10, marginTop: 2 }}>{t('tabBar.wallet')}</Text>
+            </View> : 
+            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: 65, height: 65, marginTop: 15 }}>
+              <Wallet width={30} height={30} fill={colorPalette.textSecondary} /> 
+              <Text style={{ color: colorPalette.textSecondary, fontSize: 10, marginTop: 2 }}>{t('tabBar.wallet')}</Text>
+            </View>
+          },
+          tabBarActiveTintColor: colorPalette.tertiary,
         }} 
-        listeners={{tabPress: (e) => {
-          e.preventDefault();
-          router.push('/add');
-        }}} 
       />
       <Tabs.Screen 
         name="category" 

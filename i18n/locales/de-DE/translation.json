@@ -2,6 +2,7 @@
     "tabBar": {
         "home": "Home",
         "categories": "Kategorien",
+        "wallet": "Geldbörse",
         "add": "Abo hinzufügen"
     },
     "addScreen": {
@@ -120,6 +121,24 @@
         "system": "System",
         "language": "Sprache",
         "currency": "Währung"
+    },
+    "wallet": {
+        "overview": "Finanzübersicht",
+        "monthlyTotal": "Gesamte Monatsausgaben",
+        "yearly": "Jährlich",
+        "daily": "Täglich",
+        "subscriptions": "Abos",
+        "billingBreakdown": "Aufteilung nach Zyklus",
+        "monthlySubs": "Monatlich",
+        "yearlySubs": "Jährlich",
+        "sub": "Abo",
+        "subs": "Abos",
+        "upcomingRenewals": "Bevorstehende Verlängerungen",
+        "next30Days": "30 Tage",
+        "byExpense": "Nach Monatskosten",
+        "month": "Monat",
+        "noData": "Keine Abos",
+        "noDataMessage": "Füge deine Abos hinzu, um die detaillierte Finanzübersicht zu sehen."
     },
     "credits": {
         "title": "Nachweise und Danksagungen",
