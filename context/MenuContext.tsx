@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createContext, ReactNode, useState } from "react";
-import { Dimensions, Text, TouchableWithoutFeedback, TouchableOpacity, View } from "react-native";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { Dimensions, Text, TouchableWithoutFeedback, TouchableOpacity, View, BackHandler, Platform } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { scheduleOnRN } from "react-native-worklets";
 import { useTranslation } from "react-i18next";
@@ -58,6 +58,15 @@ const MenuProvider = ({ children }: { children: ReactNode }) => {
   const backdropStyle = useAnimatedStyle(() => ({
     opacity: backdropOpacity.value,
   }));
+
+  useEffect(() => {
+    if(!isMenuOpen || Platform.OS !== 'android') return
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+        closeMenu()
+        return true
+    })
+    return () => subscription.remove()
+  }, [isMenuOpen])
 
   return (
     <MenuContext.Provider value={{ isMenuOpen, openMenu, closeMenu }}>
