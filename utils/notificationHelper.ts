@@ -36,7 +36,30 @@ export async function scheduleNotification(sub: SubscriptionType) {
     try {
         let trigger: Notifications.SchedulableNotificationTriggerInput;
 
-        if (sub.billingCycle === 'weekly') {
+        const interval = sub.billingCycleInterval ?? 1;
+
+        if (interval > 1) {
+            // Custom interval (e.g. every 2 months): calculate exact next notification date
+            const billingDate = new Date(sub.firstBillingDate);
+            const today = new Date();
+            let nextBillingDate = new Date(billingDate);
+            while (nextBillingDate <= today) {
+                if (sub.billingCycle === 'weekly') {
+                    nextBillingDate.setDate(nextBillingDate.getDate() + 7 * interval);
+                } else if (sub.billingCycle === 'monthly') {
+                    nextBillingDate.setMonth(nextBillingDate.getMonth() + interval);
+                } else {
+                    nextBillingDate.setFullYear(nextBillingDate.getFullYear() + interval);
+                }
+            }
+            const triggerDate = new Date(nextBillingDate);
+            triggerDate.setDate(triggerDate.getDate() - sub.reminderDaysBefore);
+            triggerDate.setHours(hour, minute, 0, 0);
+            trigger = {
+                type: Notifications.SchedulableTriggerInputTypes.DATE,
+                date: triggerDate,
+            };
+        } else if (sub.billingCycle === 'weekly') {
             // Calculate which day of week billing falls on, subtract reminderDaysBefore
             const billingDate = new Date(sub.firstBillingDate);
             const today = new Date();

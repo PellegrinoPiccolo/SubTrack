@@ -31,6 +31,7 @@ const add = () => {
   const [price, setPrice] = React.useState<string>('');
   const [link, setLink] = React.useState<string | null>(null);
   const [billingCycle, setBillingCycle] = React.useState<'weekly' | 'monthly' | 'yearly'>('monthly');
+  const [billingCycleInterval, setBillingCycleInterval] = React.useState<number>(1);
   const [category, setCategory] = React.useState<string>('Entertainment');
   const [firstBillingDate, setFirstBillingDate] = React.useState<Date>(new Date());
   const [reminder, setReminder] = React.useState<boolean>(true);
@@ -51,6 +52,7 @@ const add = () => {
     setPrice('');
     setLink('');
     setBillingCycle('monthly');
+    setBillingCycleInterval(1);
     setCategory('Entertainment');
     setFirstBillingDate(new Date());
     setReminder(true);
@@ -73,6 +75,7 @@ const add = () => {
       price,
       link,
       billingCycle: billingCycle as 'weekly' | 'monthly' | 'yearly',
+      billingCycleInterval,
       category: category as 'Entertainment' | 'Productivity' | 'Education' | 'Fittnes&Health' | 'Work' | 'Home' | 'Other',
       firstBillingDate,
       reminder,
@@ -188,6 +191,29 @@ const add = () => {
                 <Text style={{ color: billingCycle === cycle ? 'white' : colorPalette.textSecondary, fontSize: 15 }}>{t(`billingCycle.${cycle}`)}</Text>
               </Pressable>
             ))}
+          </View>
+          <View style={{ flexDirection: 'row', alignSelf: 'center', alignItems: 'center', gap: 10, marginTop: 20 }}>
+            <Text style={{ color: colorPalette.textSecondary, fontSize: 14 }}>{t('addScreen.every')}</Text>
+            <Pressable
+              onPress={() => setBillingCycleInterval(prev => Math.max(1, prev - 1))}
+              style={{ padding: 8, backgroundColor: colorPalette.backgroundSecondary, borderRadius: 8 }}
+            >
+              <Ionicons name="remove" size={16} color={colorPalette.text} />
+            </Pressable>
+            <Text style={{ color: colorPalette.text, fontSize: 16, minWidth: 28, textAlign: 'center' }}>
+              {billingCycleInterval}
+            </Text>
+            <Pressable
+              onPress={() => setBillingCycleInterval(prev => prev + 1)}
+              style={{ padding: 8, backgroundColor: colorPalette.backgroundSecondary, borderRadius: 8 }}
+            >
+              <Ionicons name="add" size={16} color={colorPalette.text} />
+            </Pressable>
+            <Text style={{ color: colorPalette.textSecondary, fontSize: 14 }}>
+              {billingCycleInterval === 1
+                ? t(`billingCycle.${billingCycle === 'weekly' ? 'weekSingular' : billingCycle === 'monthly' ? 'monthSingular' : 'yearSingular'}`)
+                : t(`billingCycle.${billingCycle === 'weekly' ? 'weekPlural' : billingCycle === 'monthly' ? 'monthPlural' : 'yearPlural'}`)}
+            </Text>
           </View>
         </View>
         <View style={styles.inputContainer}>

@@ -27,6 +27,7 @@
         "selectDate": "Seleziona una data",
         "done": "Fatto",
         "add": "Aggiungi Abbonamento",
+        "every": "Ogni",
         "errors": {
             "requiredFields": "Per favore, compila tutti i campi obbligatori."
         }
@@ -35,7 +36,13 @@
         "daily": "Giornaliero",
         "weekly": "Settimanale",
         "monthly": "Mensile",
-        "yearly": "Annuale"
+        "yearly": "Annuale",
+        "weekSingular": "settimana",
+        "weekPlural": "settimane",
+        "monthSingular": "mese",
+        "monthPlural": "mesi",
+        "yearSingular": "anno",
+        "yearPlural": "anni"
     },
     "categories": {
         "Entertainment": "Intrattenimento",
@@ -61,6 +68,7 @@
         "acrossAllSubscriptions": "su {{number}} abbonamento/i",
         "activeSubscriptions": "Abbonamenti attivi",
         "totalSubs": "{{count}} totali",
+        "weekly": "Settimanale",
         "monthly": "Mensile",
         "yearly": "Annuale",
         "nextBilling": "Prossimo addebito: {{date}}",

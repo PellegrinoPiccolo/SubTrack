@@ -54,17 +54,19 @@ const Home = () => {
 
   const calcDifferenceByToday = (sub: SubscriptionType) => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize to midnight
+    today.setHours(0, 0, 0, 0);
     const firstBillingDate = new Date(sub.firstBillingDate);
-    firstBillingDate.setHours(0, 0, 0, 0); // Normalize to midnight
+    firstBillingDate.setHours(0, 0, 0, 0);
     let nextBillingDate = new Date(firstBillingDate);
-    nextBillingDate.setHours(0, 0, 0, 0); // Normalize to midnight
-    // Adjust next billing date to be in the future
+    nextBillingDate.setHours(0, 0, 0, 0);
+    const interval = sub.billingCycleInterval ?? 1;
     while (nextBillingDate <= today) {
-      if (sub.billingCycle === 'monthly') {
-        nextBillingDate.setMonth(nextBillingDate.getMonth() + 1);
-      } else if (sub.billingCycle === 'yearly') {
-        nextBillingDate.setFullYear(nextBillingDate.getFullYear() + 1);
+      if (sub.billingCycle === 'weekly') {
+        nextBillingDate.setDate(nextBillingDate.getDate() + 7 * interval);
+      } else if (sub.billingCycle === 'monthly') {
+        nextBillingDate.setMonth(nextBillingDate.getMonth() + interval);
+      } else {
+        nextBillingDate.setFullYear(nextBillingDate.getFullYear() + interval);
       }
     }
     const differenceOfDays = Math.ceil((nextBillingDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
@@ -390,7 +392,7 @@ const Home = () => {
                   {`${currencySymbol}${sub.price}`}
                 </Text>
                 <Text style={{ color: colorPalette.textSecondary, fontSize: 12, marginTop: 4 }}>
-                  /{sub.billingCycle === 'monthly' ? t('home.monthly', 'Monthly') : t('home.yearly', 'Yearly')}
+                  /{sub.billingCycle === 'monthly' ? t('home.monthly', 'Monthly') : sub.billingCycle === 'yearly' ? t('home.yearly', 'Yearly') : t('home.weekly', 'Weekly')}
                 </Text>
               </View>
             </View>

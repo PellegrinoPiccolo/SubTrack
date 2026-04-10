@@ -28,6 +28,7 @@
         "selectDate": "Select a date",
         "done": "Done",
         "add": "Add Subscription",
+        "every": "Every",
         "errors": {
             "requiredFields": "Please fill in all required fields."
         }
@@ -36,7 +37,13 @@
         "daily": "Daily",
         "weekly": "Weekly",
         "monthly": "Monthly",
-        "yearly": "Yearly"
+        "yearly": "Yearly",
+        "weekSingular": "week",
+        "weekPlural": "weeks",
+        "monthSingular": "month",
+        "monthPlural": "months",
+        "yearSingular": "year",
+        "yearPlural": "years"
     },
     "categories": {
         "Entertainment": "Entertainment",
@@ -62,6 +69,7 @@
         "acrossAllSubscriptions": "across {{number}} subscription(s)",
         "activeSubscriptions": "Active Subscriptions",
         "totalSubs": "{{count}} total",
+        "weekly": "Weekly",
         "monthly": "Monthly",
         "yearly": "Yearly",
         "nextBilling": "Next billing: {{date}}",

@@ -5,6 +5,7 @@ export interface SubscriptionType {
     price: string;
     link: string | null;
     billingCycle: 'weekly' | 'monthly' | 'yearly';
+    billingCycleInterval?: number;
     category: 'Entertainment' | 'Productivity' | 'Education' | 'Fittnes&Health' | 'Work' | 'Home' | 'Other';
     firstBillingDate: Date;
     reminder: boolean;
