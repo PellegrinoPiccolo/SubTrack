@@ -23,17 +23,27 @@
         "daysBefore": "días antes",
         "weekBefore": "semana antes",
         "weeksBefore": "semanas antes",
+        "sameDay": "El mismo día",
         "addButton": "Añadir Suscripción",
         "selectDate": "Selecciona una fecha",
         "done": "Hecho",
         "add": "Añadir Suscripción",
+        "every": "Cada",
         "errors": {
             "requiredFields": "Por favor, completa todos los campos obligatorios."
         }
     },
     "billingCycle": {
+        "daily": "Diario",
+        "weekly": "Semanal",
         "monthly": "Mensual",
-        "yearly": "Anual"
+        "yearly": "Anual",
+        "weekSingular": "semana",
+        "weekPlural": "semanas",
+        "monthSingular": "mes",
+        "monthPlural": "meses",
+        "yearSingular": "año",
+        "yearPlural": "años"
     },
     "categories": {
         "Entertainment": "Entretenimiento",
@@ -59,6 +69,7 @@
         "acrossAllSubscriptions": "en {{number}} suscripción(es)",
         "activeSubscriptions": "Suscripciones Activas",
         "totalSubs": "{{count}} en total",
+        "weekly": "Semanal",
         "monthly": "Mensual",
         "yearly": "Anual",
         "nextBilling": "Próximo cobro: {{date}}",
