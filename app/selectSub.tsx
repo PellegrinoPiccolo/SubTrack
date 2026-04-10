@@ -244,204 +244,205 @@ const SelectSub = () => {
         onRequestClose={() => setShowCustomModal(false)}
       >
         <TouchableWithoutFeedback onPress={() => setShowCustomModal(false)}>
-          <View style={styles.modalOverlay}>
-            <TouchableWithoutFeedback>
-              <View
-                style={[
-                  styles.modalContent,
-                  {
-                    backgroundColor: colorPalette.background,
-                    paddingBottom: insets.bottom + 24,
-                  },
-                ]}
+          <View style={styles.modalOverlay} />
+        </TouchableWithoutFeedback>
+        <View
+          style={[
+            styles.modalContent,
+            {
+              backgroundColor: colorPalette.background,
+              paddingBottom: insets.bottom + 24,
+            },
+          ]}
+        >
+          {/* Handle */}
+          <View
+            style={{
+              width: 40,
+              height: 4,
+              borderRadius: 2,
+              backgroundColor: colorPalette.border,
+              alignSelf: 'center',
+              marginBottom: 20,
+            }}
+          />
+
+          <Text
+            style={{
+              color: colorPalette.text,
+              fontSize: 18,
+              fontWeight: '700',
+              marginBottom: 20,
+            }}
+          >
+            {t('selectSub.chooseIcon')}
+          </Text>
+
+          {/* Icon Preview */}
+          <View style={{ alignItems: 'center', marginBottom: 20 }}>
+            <View
+              style={{
+                width: 76,
+                height: 76,
+                borderRadius: 20,
+                backgroundColor: selectedColor,
+                justifyContent: 'center',
+                alignItems: 'center',
+                shadowColor: selectedColor,
+                shadowOffset: { width: 0, height: 6 },
+                shadowOpacity: 0.45,
+                shadowRadius: 10,
+                elevation: 8,
+              }}
+            >
+              {selectedCustomLibrary === 'MaterialCommunityIcons' ? (
+                <MaterialCommunityIcons name={selectedCustomIcon as any} size={38} color="white" />
+              ) : (
+                <Ionicons name={selectedCustomIcon as any} size={38} color="white" />
+              )}
+            </View>
+          </View>
+
+          {/* Color Picker */}
+          <Text
+            style={{
+              color: colorPalette.textSecondary,
+              fontSize: 13,
+              marginBottom: 10,
+            }}
+          >
+            {t('selectSub.chooseColor')}
+          </Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginBottom: 20 }}
+            contentContainerStyle={{ gap: 8, paddingHorizontal: 4 }}
+          >
+            {ICON_COLORS.map(color => (
+              <Pressable
+                key={color}
+                onPress={() => setSelectedColor(color)}
+                style={{
+                  padding: 3,
+                  borderRadius: 20,
+                  borderWidth: 2.5,
+                  borderColor: selectedColor === color ? colorPalette.text : 'transparent',
+                }}
               >
-                {/* Handle */}
                 <View
                   style={{
-                    width: 40,
-                    height: 4,
-                    borderRadius: 2,
-                    backgroundColor: colorPalette.border,
-                    alignSelf: 'center',
-                    marginBottom: 20,
+                    width: 26,
+                    height: 26,
+                    borderRadius: 13,
+                    backgroundColor: color,
                   }}
                 />
+              </Pressable>
+            ))}
+          </ScrollView>
 
-                <Text
-                  style={{
-                    color: colorPalette.text,
-                    fontSize: 18,
-                    fontWeight: '700',
-                    marginBottom: 20,
-                  }}
-                >
-                  {t('selectSub.chooseIcon')}
-                </Text>
-
-                {/* Icon Preview */}
-                <View style={{ alignItems: 'center', marginBottom: 20 }}>
-                  <View
-                    style={{
-                      width: 76,
-                      height: 76,
-                      borderRadius: 20,
-                      backgroundColor: selectedColor,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      shadowColor: selectedColor,
-                      shadowOffset: { width: 0, height: 6 },
-                      shadowOpacity: 0.45,
-                      shadowRadius: 10,
-                      elevation: 8,
-                    }}
-                  >
-                    {selectedCustomLibrary === 'MaterialCommunityIcons' ? (
-                      <MaterialCommunityIcons name={selectedCustomIcon as any} size={38} color="white" />
-                    ) : (
-                      <Ionicons name={selectedCustomIcon as any} size={38} color="white" />
-                    )}
-                  </View>
-                </View>
-
-                {/* Color Picker */}
-                <Text
-                  style={{
-                    color: colorPalette.textSecondary,
-                    fontSize: 13,
-                    marginBottom: 10,
-                  }}
-                >
-                  {t('selectSub.chooseColor')}
-                </Text>
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  style={{ marginBottom: 20 }}
-                  contentContainerStyle={{ gap: 8, paddingHorizontal: 4 }}
-                >
-                  {ICON_COLORS.map(color => (
+          {/* Icon Grid */}
+          <Text
+            style={{
+              color: colorPalette.textSecondary,
+              fontSize: 13,
+              marginBottom: 10,
+            }}
+          >
+            {t('selectSub.chooseIconLabel')}
+          </Text>
+          <ScrollView
+            style={{ maxHeight: 260 }}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 8, backgroundColor: 'transparent' }}
+            nestedScrollEnabled
+            scrollEventThrottle={16}
+          >
+            <View style={{ width: '100%' }}>
+              {/* Brand icons */}
+              <Text style={{ color: colorPalette.textSecondary, fontSize: 11, fontWeight: '600', letterSpacing: 0.5, marginBottom: 8 }}>
+                BRANDS
+              </Text>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
+                {BRAND_ICONS.map(icon => {
+                  const lib = icon.library || 'Ionicons'
+                  const isSelected = selectedCustomIcon === icon.name && selectedCustomLibrary === lib
+                  return (
                     <Pressable
-                      key={color}
-                      onPress={() => setSelectedColor(color)}
+                      key={`${lib}-${icon.name}`}
+                      onPress={() => { setSelectedCustomIcon(icon.name); setSelectedCustomLibrary(lib) }}
                       style={{
-                        padding: 3,
-                        borderRadius: 20,
-                        borderWidth: 2.5,
-                        borderColor: selectedColor === color ? colorPalette.text : 'transparent',
+                        width: 52,
+                        height: 52,
+                        borderRadius: 12,
+                        backgroundColor: isSelected ? selectedColor : colorPalette.backgroundSecondary,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderWidth: 1.5,
+                        borderColor: isSelected ? selectedColor : 'transparent',
                       }}
                     >
-                      <View
-                        style={{
-                          width: 26,
-                          height: 26,
-                          borderRadius: 13,
-                          backgroundColor: color,
-                        }}
+                      <MaterialCommunityIcons
+                        name={icon.name as any}
+                        size={24}
+                        color={isSelected ? 'white' : colorPalette.text}
                       />
                     </Pressable>
-                  ))}
-                </ScrollView>
-
-                {/* Icon Grid */}
-                <Text
-                  style={{
-                    color: colorPalette.textSecondary,
-                    fontSize: 13,
-                    marginBottom: 10,
-                  }}
-                >
-                  {t('selectSub.chooseIconLabel')}
-                </Text>
-                <ScrollView
-                  style={{ maxHeight: 260 }}
-                  showsVerticalScrollIndicator={false}
-                  nestedScrollEnabled
-                >
-                  {/* Brand icons */}
-                  <Text style={{ color: colorPalette.textSecondary, fontSize: 11, fontWeight: '600', letterSpacing: 0.5, marginBottom: 8 }}>
-                    BRANDS
-                  </Text>
-                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
-                    {BRAND_ICONS.map(icon => {
-                      const lib = icon.library || 'Ionicons'
-                      const isSelected = selectedCustomIcon === icon.name && selectedCustomLibrary === lib
-                      return (
-                        <Pressable
-                          key={`${lib}-${icon.name}`}
-                          onPress={() => { setSelectedCustomIcon(icon.name); setSelectedCustomLibrary(lib) }}
-                          style={{
-                            width: 52,
-                            height: 52,
-                            borderRadius: 12,
-                            backgroundColor: isSelected ? selectedColor : colorPalette.backgroundSecondary,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            borderWidth: 1.5,
-                            borderColor: isSelected ? selectedColor : 'transparent',
-                          }}
-                        >
-                          <MaterialCommunityIcons
-                            name={icon.name as any}
-                            size={24}
-                            color={isSelected ? 'white' : colorPalette.text}
-                          />
-                        </Pressable>
-                      )
-                    })}
-                  </View>
-
-                  {/* Generic icons */}
-                  <Text style={{ color: colorPalette.textSecondary, fontSize: 11, fontWeight: '600', letterSpacing: 0.5, marginBottom: 8 }}>
-                    ICONS
-                  </Text>
-                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-                    {CUSTOM_ICONS.map(icon => {
-                      const isSelected = selectedCustomIcon === icon.name && selectedCustomLibrary === 'Ionicons'
-                      return (
-                        <Pressable
-                          key={icon.name}
-                          onPress={() => { setSelectedCustomIcon(icon.name); setSelectedCustomLibrary('Ionicons') }}
-                          style={{
-                            width: 52,
-                            height: 52,
-                            borderRadius: 12,
-                            backgroundColor: isSelected ? selectedColor : colorPalette.backgroundSecondary,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            borderWidth: 1.5,
-                            borderColor: isSelected ? selectedColor : 'transparent',
-                          }}
-                        >
-                          <Ionicons
-                            name={icon.name as any}
-                            size={24}
-                            color={isSelected ? 'white' : colorPalette.text}
-                          />
-                        </Pressable>
-                      )
-                    })}
-                  </View>
-                </ScrollView>
-
-                {/* Continue Button */}
-                <Pressable
-                  onPress={handleCustomContinue}
-                  style={{
-                    marginTop: 20,
-                    backgroundColor: selectedColor,
-                    borderRadius: 10,
-                    paddingVertical: 14,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>
-                    {t('selectSub.continue')}
-                  </Text>
-                </Pressable>
+                  )
+                })}
               </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </TouchableWithoutFeedback>
+
+              {/* Generic icons */}
+              <Text style={{ color: colorPalette.textSecondary, fontSize: 11, fontWeight: '600', letterSpacing: 0.5, marginBottom: 8 }}>
+                ICONS
+              </Text>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+                {CUSTOM_ICONS.map(icon => {
+                  const isSelected = selectedCustomIcon === icon.name && selectedCustomLibrary === 'Ionicons'
+                  return (
+                    <Pressable
+                      key={icon.name}
+                      onPress={() => { setSelectedCustomIcon(icon.name); setSelectedCustomLibrary('Ionicons') }}
+                      style={{
+                        width: 52,
+                        height: 52,
+                        borderRadius: 12,
+                        backgroundColor: isSelected ? selectedColor : colorPalette.backgroundSecondary,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderWidth: 1.5,
+                        borderColor: isSelected ? selectedColor : 'transparent',
+                      }}
+                    >
+                      <Ionicons
+                        name={icon.name as any}
+                        size={24}
+                        color={isSelected ? 'white' : colorPalette.text}
+                      />
+                    </Pressable>
+                  )
+                })}
+              </View>
+            </View>
+          </ScrollView>
+
+          {/* Continue Button */}
+          <Pressable
+            onPress={handleCustomContinue}
+            style={{
+              marginTop: 20,
+              backgroundColor: selectedColor,
+              borderRadius: 10,
+              paddingVertical: 14,
+              alignItems: 'center',
+            }}
+          >
+            <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>
+              {t('selectSub.continue')}
+            </Text>
+          </Pressable>
+        </View>
       </Modal>
     </>
   )
