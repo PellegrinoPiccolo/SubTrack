@@ -86,7 +86,7 @@ export async function scheduleNotification(sub: SubscriptionType) {
             triggerDate.setDate(triggerDate.getDate() - sub.reminderDaysBefore);
             trigger = {
                 type: Notifications.SchedulableTriggerInputTypes.YEARLY,
-                month: triggerDate.getMonth() + 1,
+                month: triggerDate.getMonth(), // 0-based: iOS adds +1 internally, Android Calendar.MONTH is 0-indexed
                 day: triggerDate.getDate(),
                 hour,
                 minute,
