@@ -81,13 +81,21 @@ const RootLayout = () => {
           animation: 'slide_from_right' 
         }} 
       />
-      <Stack.Screen 
-        name='add' 
-        options={{ 
-          headerShown: false, 
-          presentation: 'modal', 
-          animation: 'slide_from_right' 
-        }} 
+      <Stack.Screen
+        name='add'
+        options={{
+          headerShown: false,
+          presentation: 'modal',
+          animation: 'slide_from_right'
+        }}
+      />
+      <Stack.Screen
+        name='selectSub'
+        options={{
+          headerShown: false,
+          presentation: 'modal',
+          animation: 'slide_from_right'
+        }}
       />
     </Stack>
   );

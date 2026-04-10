@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Image, Pressable, ScrollView, Text, View } from 'react-native'
+import { Pressable, ScrollView, Text, View } from 'react-native'
 import useTheme from '../../hook/ThemeHook'
 import useSubs from '../../hook/SubsHook'
 import useCurrency from '../../hook/CurrencyHook'
@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { SubscriptionType } from '../../types/SubscriptionType'
-import { ImageForCategory } from '../../constants/ImageForCategory'
+import SubIcon from '../../components/SubIcon'
 import { useRouter } from 'expo-router'
 import CurrencyExchange from '../../assets/icons/currency_exchange.svg'
 import CalendarToday from '../../assets/icons/calendar_today.svg'
@@ -359,11 +359,17 @@ const Wallet = () => {
                   </Text>
 
                   {/* Icon */}
-                  <View style={{
-                    backgroundColor: colorPalette.primary + '18',
-                    padding: 8, borderRadius: 10, marginRight: 12,
-                  }}>
-                    <Image source={ImageForCategory[sub.category]} style={{ width: 28, height: 28 }} />
+                  <View style={{ marginRight: 12 }}>
+                    <SubIcon
+                      iconName={sub.iconName}
+                      iconLibrary={sub.iconLibrary}
+                      iconColor={sub.iconColor}
+                      category={sub.category}
+                      containerSize={44}
+                      iconSize={22}
+                      borderRadius={10}
+                      fallbackBg={colorPalette.primary + '18'}
+                    />
                   </View>
 
                   {/* Name & category */}

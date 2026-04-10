@@ -13,4 +13,7 @@ export interface SubscriptionType {
     reminderMinute?: number;
     notificationId?: string | null;
     labels?: string[];
+    iconName?: string | null;
+    iconColor?: string | null;
+    iconLibrary?: 'Ionicons' | 'MaterialCommunityIcons' | null;
 }

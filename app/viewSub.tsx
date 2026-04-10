@@ -17,6 +17,9 @@ import { useSharedValue } from 'react-native-reanimated';
 import { Picker } from '@react-native-picker/picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Linking from 'expo-linking';
+import { ICON_COLORS } from '../constants/PresetSubscriptions';
+import SubIcon from '../components/SubIcon';
+import IconPickerModal from '../components/IconPickerModal';
 
 const ViewSub = () => {
   const { colorPalette } = useTheme();
@@ -31,6 +34,7 @@ const ViewSub = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showIconPicker, setShowIconPicker] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
 
@@ -51,6 +55,9 @@ const ViewSub = () => {
     return d;
   });
   const [selectedLabels, setSelectedLabels] = useState<string[]>(subscription.labels || []);
+  const [iconName, setIconName] = useState<string | null>(subscription.iconName || null);
+  const [iconLibrary, setIconLibrary] = useState<string | null>(subscription.iconLibrary || null);
+  const [iconColor, setIconColor] = useState<string>(subscription.iconColor || ICON_COLORS[7]);
 
   const localDevice = getLocales()[0].languageCode;
 
@@ -91,6 +98,9 @@ const ViewSub = () => {
       reminderHour: reminderTime.getHours(),
       reminderMinute: reminderTime.getMinutes(),
       labels: selectedLabels,
+      iconName,
+      iconLibrary: iconLibrary as 'Ionicons' | 'MaterialCommunityIcons' | null,
+      iconColor,
     };
 
     modifySub(updatedSub);
@@ -119,6 +129,9 @@ const ViewSub = () => {
     resetTime.setHours(subscription.reminderHour ?? 9, subscription.reminderMinute ?? 0, 0, 0);
     setReminderTime(resetTime);
     setSelectedLabels(subscription.labels || []);
+    setIconName(subscription.iconName || null);
+    setIconLibrary(subscription.iconLibrary || null);
+    setIconColor(subscription.iconColor || ICON_COLORS[7]);
     setShowErrors(false);
     setIsEditing(false);
   };
@@ -151,16 +164,47 @@ const ViewSub = () => {
             <View style={styles.viewContainer}>
               {/* Subscription Icon & Name */}
               <View style={styles.iconContainer}>
-                <LinearGradient
-                  colors={[colorPalette.primary, colorPalette.secondary]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={styles.iconGradient}
-                >
-                  <View style={[styles.iconWrapper, { backgroundColor: colorPalette.background }]}>
-                    <Image source={ImageForCategory[subscription.category]} style={styles.icon} />
-                  </View>
-                </LinearGradient>
+                <Pressable onPress={() => setShowIconPicker(true)}>
+                  {iconName ? (
+                    <View style={{ position: 'relative' }}>
+                      <SubIcon
+                        iconName={iconName}
+                        iconLibrary={iconLibrary}
+                        iconColor={iconColor}
+                        containerSize={100}
+                        iconSize={52}
+                        borderRadius={26}
+                        shadow
+                      />
+                      <View style={{
+                        position: 'absolute',
+                        bottom: -4,
+                        right: -4,
+                        width: 26,
+                        height: 26,
+                        borderRadius: 13,
+                        backgroundColor: colorPalette.primary,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderWidth: 2,
+                        borderColor: colorPalette.background,
+                      }}>
+                        <Ionicons name="pencil" size={13} color="white" />
+                      </View>
+                    </View>
+                  ) : (
+                    <LinearGradient
+                      colors={[colorPalette.primary, colorPalette.secondary]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      style={styles.iconGradient}
+                    >
+                      <View style={[styles.iconWrapper, { backgroundColor: colorPalette.background }]}>
+                        <Image source={ImageForCategory[subscription.category]} style={styles.icon} />
+                      </View>
+                    </LinearGradient>
+                  )}
+                </Pressable>
               </View>
 
               <Text style={[styles.subscriptionName, { color: colorPalette.text }]}>{subscription.name}</Text>
@@ -296,6 +340,57 @@ const ViewSub = () => {
           ) : (
             /* Edit Mode */
             <View style={styles.editContainer}>
+              {/* Icon picker trigger (edit mode) */}
+              <View style={[styles.inputContainer, { alignItems: 'center' }]}>
+                <Pressable onPress={() => setShowIconPicker(true)}>
+                  {iconName ? (
+                    <View style={{ position: 'relative' }}>
+                      <SubIcon
+                        iconName={iconName}
+                        iconLibrary={iconLibrary}
+                        iconColor={iconColor}
+                        containerSize={80}
+                        iconSize={42}
+                        borderRadius={22}
+                        shadow
+                      />
+                      <View style={{
+                        position: 'absolute',
+                        bottom: -4,
+                        right: -4,
+                        width: 24,
+                        height: 24,
+                        borderRadius: 12,
+                        backgroundColor: colorPalette.primary,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderWidth: 2,
+                        borderColor: colorPalette.background,
+                      }}>
+                        <Ionicons name="pencil" size={12} color="white" />
+                      </View>
+                    </View>
+                  ) : (
+                    <View style={{
+                      width: 80,
+                      height: 80,
+                      borderRadius: 22,
+                      backgroundColor: colorPalette.backgroundSecondary,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderWidth: 1.5,
+                      borderColor: colorPalette.border,
+                      borderStyle: 'dashed',
+                    }}>
+                      <Ionicons name="add" size={32} color={colorPalette.textSecondary} />
+                    </View>
+                  )}
+                </Pressable>
+                <Text style={{ color: colorPalette.textSecondary, fontSize: 12, marginTop: 8 }}>
+                  {t('selectSub.chooseIcon', 'Choose Icon')}
+                </Text>
+              </View>
+
               {/* Name */}
               <View style={styles.inputContainer}>
                 <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.name')} <Text style={{ color: 'red' }}>*</Text></Text>
@@ -600,6 +695,30 @@ const ViewSub = () => {
           )}
         </ScrollView>
       </SafeAreaView>
+
+      {/* Icon Picker Modal */}
+      <IconPickerModal
+        visible={showIconPicker}
+        onClose={() => setShowIconPicker(false)}
+        iconName={iconName}
+        iconLibrary={iconLibrary}
+        iconColor={iconColor}
+        onSelect={(name, library, color) => {
+          setIconName(name);
+          setIconLibrary(library);
+          setIconColor(color);
+          if (!isEditing) {
+            modifySub({ ...subscription, iconName: name, iconLibrary: library as 'Ionicons' | 'MaterialCommunityIcons', iconColor: color });
+          }
+        }}
+        onRemove={() => {
+          setIconName(null);
+          setIconLibrary(null);
+          if (!isEditing) {
+            modifySub({ ...subscription, iconName: null, iconLibrary: null });
+          }
+        }}
+      />
 
       {/* Delete Confirmation Modal */}
       <Modal transparent={true} animationType="fade" visible={showDeleteModal} onRequestClose={() => setShowDeleteModal(false)}>

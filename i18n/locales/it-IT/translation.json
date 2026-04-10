@@ -146,5 +146,17 @@
         "thanksMessage": "SubTrack è stato creato per aiutarti a gestire i tuoi abbonamenti in modo più efficace.",
         "developer": "Sviluppatore",
         "iconCredits": "Crediti Icone"
+    },
+    "selectSub": {
+        "title": "Scegli un Servizio",
+        "search": "Cerca...",
+        "customSection": "Personalizzato",
+        "presetsSection": "Servizi Popolari",
+        "custom": "Abbonamento Personalizzato",
+        "customSubtitle": "Aggiungi qualsiasi servizio con un'icona personalizzata",
+        "chooseIcon": "Personalizza Icona",
+        "chooseColor": "Scegli un colore",
+        "chooseIconLabel": "Scegli un'icona",
+        "continue": "Continua"
     }
 }

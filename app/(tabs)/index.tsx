@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Image, Linking, Pressable, ScrollView, Text, View } from 'react-native'
+import { Linking, Pressable, ScrollView, Text, View } from 'react-native'
 import useTheme from '../../hook/ThemeHook';
 import useSubs from '../../hook/SubsHook';
 import { FlashList } from "@shopify/flash-list";
@@ -12,7 +12,7 @@ import useCurrency from '../../hook/CurrencyHook';
 import { SubscriptionType } from '../../types/SubscriptionType';
 import CurrencyExchange from '../../assets/icons/currency_exchange.svg';
 import CalendarToday from '../../assets/icons/calendar_today.svg';
-import { ImageForCategory } from '../../constants/ImageForCategory';
+import SubIcon from '../../components/SubIcon';
 import { useRouter } from 'expo-router';
 import TabBarButton from '../../components/TabBarButton';
 
@@ -374,13 +374,17 @@ const Home = () => {
     return (
       <Pressable onPress={() => navigateToSub(sub)} style={{ padding: 16, marginBottom: 10, borderColor: colorPalette.border, borderWidth: 1, backgroundColor: colorPalette.backgroundSecondary, marginHorizontal: 16, borderRadius: 10 }}>
         <View style={{flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10}}>
-          <View style={{
-            backgroundColor: colorPalette.primary + '20', 
-            padding: 10, 
-            borderRadius: 10,
-            marginRight: 10,
-          }}>
-            <Image source={ImageForCategory[sub.category]} style={{ width: 34, height: 34}} />
+          <View style={{ marginRight: 10 }}>
+            <SubIcon
+              iconName={sub.iconName}
+              iconLibrary={sub.iconLibrary}
+              iconColor={sub.iconColor}
+              category={sub.category}
+              containerSize={54}
+              iconSize={28}
+              borderRadius={12}
+              fallbackBg={colorPalette.primary + '20'}
+            />
           </View>
           <View style={{flexDirection: 'column', flex: 1}}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', flex: 1, alignItems: 'flex-start'}}>
@@ -534,7 +538,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         />
       <View style={{ position: 'absolute', bottom: -10, right: 20 }}>
-        <TabBarButton onPress={() => router.push('/add')} />
+        <TabBarButton onPress={() => router.push('/selectSub')} />
       </View>
     </View>
   )

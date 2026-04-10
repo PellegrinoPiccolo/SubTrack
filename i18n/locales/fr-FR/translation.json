@@ -146,5 +146,17 @@
         "thanksMessage": "SubTrack a été créé pour vous aider à gérer vos abonnements plus efficacement.",
         "developer": "Développeur",
         "iconCredits": "Crédits des icônes"
+    },
+    "selectSub": {
+        "title": "Choisir un Service",
+        "search": "Rechercher...",
+        "customSection": "Personnalisé",
+        "presetsSection": "Services Populaires",
+        "custom": "Abonnement Personnalisé",
+        "customSubtitle": "Ajoutez n'importe quel service avec une icône personnalisée",
+        "chooseIcon": "Personnaliser l'icône",
+        "chooseColor": "Choisir une couleur",
+        "chooseIconLabel": "Choisir une icône",
+        "continue": "Continuer"
     }
 }

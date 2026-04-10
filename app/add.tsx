@@ -3,7 +3,7 @@ import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, To
 import useTheme from '../hook/ThemeHook';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { getLocales } from 'expo-localization';
 import useCurrency from '../hook/CurrencyHook';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -15,6 +15,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SubscriptionType } from '../types/SubscriptionType';
 import useSubs from '../hook/SubsHook';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ICON_COLORS } from '../constants/PresetSubscriptions';
+import SubIcon from '../components/SubIcon';
+import IconPickerModal from '../components/IconPickerModal';
 
 const add = () => {
 
@@ -25,18 +28,29 @@ const add = () => {
   const {addSub} = useSubs();
 
   const router = useRouter();
+  const params = useLocalSearchParams();
 
-  const [name, setName] = React.useState<string>('');
+  const presetName = params.presetName as string | undefined;
+  const presetIconName = params.presetIconName as string | undefined;
+  const presetIconLibrary = params.presetIconLibrary as string | undefined;
+  const presetIconColor = params.presetIconColor as string | undefined;
+  const presetCategory = params.presetCategory as string | undefined;
+
+  const [name, setName] = React.useState<string>(presetName || '');
   const [description, setDescription] = React.useState<string | null>(null);
   const [price, setPrice] = React.useState<string>('');
   const [link, setLink] = React.useState<string | null>(null);
   const [billingCycle, setBillingCycle] = React.useState<string>('monthly');
-  const [category, setCategory] = React.useState<string>('Entertainment');
+  const [category, setCategory] = React.useState<string>(presetCategory || 'Entertainment');
   const [firstBillingDate, setFirstBillingDate] = React.useState<Date>(new Date());
   const [reminder, setReminder] = React.useState<boolean>(true);
   const isOn = useSharedValue(reminder);
   const [reminderDaysBefore, setReminderDaysBefore] = React.useState<number>(1);
-  
+  const [iconName, setIconName] = React.useState<string | null>(presetIconName || null);
+  const [iconLibrary, setIconLibrary] = React.useState<string | null>(presetIconLibrary || null);
+  const [iconColor, setIconColor] = React.useState<string>(presetIconColor || ICON_COLORS[7]);
+
+  const [showIconPicker, setShowIconPicker] = React.useState<boolean>(false);
   const [showDatePicker, setShowDatePicker] = React.useState<boolean>(false);
   const [showTimePicker, setShowTimePicker] = React.useState<boolean>(false);
   const [reminderTime, setReminderTime] = React.useState<Date>(new Date(new Date().setHours(9, 0, 0, 0)));
@@ -45,20 +59,6 @@ const add = () => {
 
   const localDevice = getLocales()[0].languageCode;
 
-  const close = () => {
-    setName('');
-    setDescription('');
-    setPrice('');
-    setLink('');
-    setBillingCycle('monthly');
-    setCategory('Entertainment');
-    setFirstBillingDate(new Date());
-    setReminder(true);
-    setReminderDaysBefore(1);
-    setReminderTime(new Date(new Date().setHours(9, 0, 0, 0)));
-    setSelectedLabels([]);
-    router.back();
-  }
 
   const save = () => {
     if(name.trim() === '' || price.trim() === '' || !billingCycle || !category || !firstBillingDate) {
@@ -80,9 +80,13 @@ const add = () => {
       reminderHour: reminderTime.getHours(),
       reminderMinute: reminderTime.getMinutes(),
       labels: selectedLabels,
+      iconName,
+      iconLibrary: iconLibrary as 'Ionicons' | 'MaterialCommunityIcons' | null,
+      iconColor,
     }
     addSub(newSub);
-    close();
+    router.back();
+    router.back();
   }
 
   const insets = useSafeAreaInsets();
@@ -118,7 +122,57 @@ const add = () => {
       backgroundColor: colorPalette.background,
     }}>
       <View style={styles.formContainer}>
-        {/* Form inputs will go here */}
+        {/* Icon picker trigger */}
+        <View style={[styles.inputContainer, { alignItems: 'center' }]}>
+          <Pressable onPress={() => setShowIconPicker(true)}>
+            {iconName ? (
+              <View style={{ position: 'relative' }}>
+                <SubIcon
+                  iconName={iconName}
+                  iconLibrary={iconLibrary}
+                  iconColor={iconColor}
+                  containerSize={80}
+                  iconSize={42}
+                  borderRadius={22}
+                  shadow
+                />
+                <View style={{
+                  position: 'absolute',
+                  bottom: -4,
+                  right: -4,
+                  width: 24,
+                  height: 24,
+                  borderRadius: 12,
+                  backgroundColor: colorPalette.primary,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 2,
+                  borderColor: colorPalette.background,
+                }}>
+                  <Ionicons name="pencil" size={12} color="white" />
+                </View>
+              </View>
+            ) : (
+              <View style={{
+                width: 80,
+                height: 80,
+                borderRadius: 22,
+                backgroundColor: colorPalette.backgroundSecondary,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderWidth: 1.5,
+                borderColor: colorPalette.border,
+                borderStyle: 'dashed',
+              }}>
+                <Ionicons name="add" size={32} color={colorPalette.textSecondary} />
+              </View>
+            )}
+          </Pressable>
+          <Text style={{ color: colorPalette.textSecondary, fontSize: 12, marginTop: 8 }}>
+            {t('selectSub.chooseIcon', 'Choose Icon')}
+          </Text>
+        </View>
+
         <View style={styles.inputContainer}>
           <Text style={[styles.label, { color: colorPalette.text }]}>{t('addScreen.name')} <Text style={{ color: 'red' }}>*</Text></Text>
           <View style={[styles.input, { backgroundColor: colorPalette.backgroundSecondary, borderWidth: 1, borderColor: showErrors && name.trim() === '' ? 'red' : 'transparent' }]} >
@@ -398,6 +452,22 @@ const add = () => {
         </Pressable>
       </View>
     </ScrollView>
+    <IconPickerModal
+      visible={showIconPicker}
+      onClose={() => setShowIconPicker(false)}
+      iconName={iconName}
+      iconLibrary={iconLibrary}
+      iconColor={iconColor}
+      onSelect={(name, library, color) => {
+        setIconName(name);
+        setIconLibrary(library);
+        setIconColor(color);
+      }}
+      onRemove={() => {
+        setIconName(null);
+        setIconLibrary(null);
+      }}
+    />
 </>
   )
 }

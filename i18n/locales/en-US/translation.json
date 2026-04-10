@@ -146,5 +146,17 @@
         "thanksMessage": "SubTrack was created to help you manage your subscriptions more effectively.",
         "developer": "Developer",
         "iconCredits": "Icon Credits"
+    },
+    "selectSub": {
+        "title": "Choose a Service",
+        "search": "Search...",
+        "customSection": "Custom",
+        "presetsSection": "Popular Services",
+        "custom": "Custom Subscription",
+        "customSubtitle": "Add any service with a custom icon",
+        "chooseIcon": "Customize Icon",
+        "chooseColor": "Choose a color",
+        "chooseIconLabel": "Choose an icon",
+        "continue": "Continue"
     }
 }

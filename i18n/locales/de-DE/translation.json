@@ -146,5 +146,17 @@
         "thanksMessage": "SubTrack wurde entwickelt, um dir die Verwaltung deiner Abos zu erleichtern.",
         "developer": "Entwickler",
         "iconCredits": "Icon-Nachweise"
+    },
+    "selectSub": {
+        "title": "Dienst auswählen",
+        "search": "Suchen...",
+        "customSection": "Benutzerdefiniert",
+        "presetsSection": "Beliebte Dienste",
+        "custom": "Benutzerdefiniertes Abo",
+        "customSubtitle": "Füge einen beliebigen Dienst mit eigenem Icon hinzu",
+        "chooseIcon": "Icon anpassen",
+        "chooseColor": "Farbe wählen",
+        "chooseIconLabel": "Icon wählen",
+        "continue": "Weiter"
     }
 }
