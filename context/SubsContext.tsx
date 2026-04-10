@@ -36,11 +36,38 @@ const SubsProvider = ({ children }: { children: React.ReactNode }) => {
   const [loadingSubs, setLoadingSubs] = useState(true);
   const [labels, setLabels] = useState<LabelsType[]>([]);
 
+  const rescheduleCustomIntervalNotifications = async (loadedSubs: SubscriptionType[]): Promise<SubscriptionType[]> => {
+    const scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
+    const scheduledIds = new Set(scheduledNotifications.map(n => n.identifier));
+
+    const subsToReschedule = loadedSubs.filter(sub =>
+      sub.reminder &&
+      (sub.billingCycleInterval ?? 1) > 1 &&
+      (!sub.notificationId || !scheduledIds.has(sub.notificationId))
+    );
+
+    if (subsToReschedule.length === 0) return loadedSubs;
+
+    const updatedSubs = [...loadedSubs];
+    for (const sub of subsToReschedule) {
+      const newNotificationId = await scheduleNotification(sub);
+      const idx = updatedSubs.findIndex(s => s.id === sub.id);
+      if (idx !== -1) {
+        updatedSubs[idx] = { ...updatedSubs[idx], notificationId: newNotificationId };
+      }
+    }
+
+    await AsyncStorage.setItem('subscriptions', JSON.stringify(updatedSubs));
+    return updatedSubs;
+  };
+
   const loadSubs = async () => {
     const storedSubs = await AsyncStorage.getItem('subscriptions');
     const storedLabels = await AsyncStorage.getItem('labels');
     if (storedSubs) {
-      setSubs(JSON.parse(storedSubs));
+      const parsedSubs = JSON.parse(storedSubs) as SubscriptionType[];
+      const rescheduledSubs = await rescheduleCustomIntervalNotifications(parsedSubs);
+      setSubs(rescheduledSubs);
       setLabels(storedLabels ? JSON.parse(storedLabels) : []);
     }
     setLoadingSubs(false);
