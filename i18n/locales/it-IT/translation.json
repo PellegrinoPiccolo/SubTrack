@@ -23,6 +23,7 @@
         "daysBefore": "giorni prima",
         "weekBefore": "settimana prima",
         "weeksBefore": "settimane prima",
+        "sameDay": "Stesso giorno",
         "addButton": "Aggiungi Abbonamento",
         "selectDate": "Seleziona una data",
         "done": "Fatto",
