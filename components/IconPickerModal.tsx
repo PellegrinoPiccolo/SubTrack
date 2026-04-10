@@ -207,7 +207,7 @@ const IconPickerModal = ({
                 }}
               >
                 <Text style={{ color: colorPalette.textSecondary, fontSize: 15 }}>
-                  Remove
+                  {t('addScreen.remove', 'Remove')}
                 </Text>
               </Pressable>
             )}
