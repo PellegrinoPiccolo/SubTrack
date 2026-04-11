@@ -17,6 +17,8 @@ import Menu from '../../assets/icons/menu.svg'
 import useMenu from '../../hook/MenuHook'
 import Wallet from '../../assets/icons/wallet.svg'
 import WalletFilled from '../../assets/icons/wallet_filled.svg'
+import CalendarToday from '../../assets/icons/calendar_today.svg'
+import CalendarTodayFilled from '../../assets/icons/calendar_today_filled.svg'
 
 const _layout = () => {
 
@@ -190,6 +192,34 @@ const _layout = () => {
             </View>
           },
           tabBarActiveTintColor: colorPalette.tertiary,
+        }} 
+      />
+      <Tabs.Screen 
+        name="calendar" 
+        options={{ 
+          tabBarShowLabel: false,
+          tabBarIcon: ({focused}) => {
+            return focused ? 
+            <View style={{
+              backgroundColor: colorPalette.quartary + '33',
+              borderRadius: 15,
+              padding: 5,
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 65,
+              height: 65,
+              marginTop: 15
+            }}>
+              <CalendarTodayFilled width={30} height={30} fill={colorPalette.quartary} /> 
+              <Text style={{ color: colorPalette.quartary, fontSize: 10, marginTop: 2 }}>{t('tabBar.calendar')}</Text>
+            </View> : 
+            <View style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: 65, height: 65, marginTop: 15 }}>
+              <CalendarToday width={30} height={30} fill={colorPalette.textSecondary} /> 
+              <Text style={{ color: colorPalette.textSecondary, fontSize: 10, marginTop: 2 }}>{t('tabBar.calendar')}</Text>
+            </View>
+          },
+          tabBarActiveTintColor: colorPalette.quartary,
         }} 
       />
       <Tabs.Screen 

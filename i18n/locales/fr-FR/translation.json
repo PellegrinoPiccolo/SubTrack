@@ -2,7 +2,8 @@
     "tabBar": {
         "home": "Accueil",
         "categories": "Catégories",
-        "wallet": "Portefeuille"
+        "wallet": "Portefeuille",
+        "calendar": "Calendrier"
     },
     "addScreen": {
         "title": "Ajouter un abonnement",
@@ -158,6 +159,15 @@
         "thanksMessage": "SubTrack a été créé pour vous aider à gérer vos abonnements plus efficacement.",
         "developer": "Développeur",
         "iconCredits": "Crédits des icônes"
+    },
+    "calendar": {
+        "title": "Calendrier des Renouvellements",
+        "subtitle": "Suivez les renouvellements de vos abonnements",
+        "noData": "Aucun abonnement",
+        "noDataMessage": "Ajoutez vos abonnements pour voir leurs dates de renouvellement dans le calendrier.",
+        "noRenewals": "Aucun renouvellement ce jour",
+        "renewal": "Renouvellement",
+        "today": "Aujourd'hui"
     },
     "selectSub": {
         "title": "Choisir un Service",

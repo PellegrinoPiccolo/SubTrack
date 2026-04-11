@@ -2,7 +2,8 @@
     "tabBar": {
         "home": "Home",
         "categories": "Categories",
-        "wallet": "Wallet"
+        "wallet": "Wallet",
+        "calendar": "Calendar"
     },
     "addScreen": {
         "title": "Add Subscription",
@@ -158,6 +159,15 @@
         "thanksMessage": "SubTrack was created to help you manage your subscriptions more effectively.",
         "developer": "Developer",
         "iconCredits": "Icon Credits"
+    },
+    "calendar": {
+        "title": "Renewal Calendar",
+        "subtitle": "Track your subscription renewals",
+        "noData": "No subscriptions",
+        "noDataMessage": "Add your subscriptions to see their renewal dates on the calendar.",
+        "noRenewals": "No renewals on this day",
+        "renewal": "Renewal",
+        "today": "Today"
     },
     "selectSub": {
         "title": "Choose a Service",
