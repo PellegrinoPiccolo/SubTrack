@@ -408,6 +408,7 @@ const Calendar = () => {
                         width: CELL_SIZE,
                         height: CELL_SIZE,
                         borderRadius: CELL_SIZE / 2,
+                        overflow: 'hidden',
                         backgroundColor: isSelected
                           ? colorPalette.primary
                           : isTodayDay
@@ -434,39 +435,65 @@ const Calendar = () => {
                       </Text>
                     </View>
 
-                    {/* Renewal dots */}
+                    {/* Renewal icons */}
                     {hasRenewals && (
                       <View
                         style={{
                           flexDirection: 'row',
                           justifyContent: 'center',
-                          gap: 2,
-                          marginTop: 2,
-                          height: 6,
+                          marginTop: 3,
+                          height: 16,
                         }}
                       >
-                        {renewals.slice(0, 3).map((sub, dotIdx) => (
+                        {(renewals.length > 3
+                          ? renewals.slice(0, 2)
+                          : renewals.slice(0, 3)
+                        ).map((sub, iconIdx) => (
                           <View
-                            key={dotIdx}
+                            key={iconIdx}
                             style={{
-                              width: 5,
-                              height: 5,
-                              borderRadius: 3,
-                              backgroundColor:
-                                sub.iconColor ??
-                                (isSelected ? 'white' : colorPalette.primary),
+                              marginLeft: iconIdx === 0 ? 0 : -5,
+                              borderWidth: 1,
+                              borderColor: colorPalette.backgroundSecondary,
+                              borderRadius: 5,
                             }}
-                          />
+                          >
+                            <SubIcon
+                              iconName={sub.iconName}
+                              iconLibrary={sub.iconLibrary}
+                              iconColor={sub.iconColor}
+                              category={sub.category}
+                              containerSize={16}
+                              iconSize={8}
+                              borderRadius={4}
+                              fallbackBg={colorPalette.primary + '33'}
+                            />
+                          </View>
                         ))}
                         {renewals.length > 3 && (
                           <View
                             style={{
-                              width: 5,
-                              height: 5,
-                              borderRadius: 3,
-                              backgroundColor: colorPalette.textSecondary,
+                              marginLeft: -5,
+                              width: 16,
+                              height: 16,
+                              borderRadius: 4,
+                              backgroundColor: colorPalette.border,
+                              borderWidth: 1,
+                              borderColor: colorPalette.backgroundSecondary,
+                              justifyContent: 'center',
+                              alignItems: 'center',
                             }}
-                          />
+                          >
+                            <Text
+                              style={{
+                                color: colorPalette.textSecondary,
+                                fontSize: 7,
+                                fontWeight: '700',
+                              }}
+                            >
+                              +{renewals.length - 2}
+                            </Text>
+                          </View>
                         )}
                       </View>
                     )}
