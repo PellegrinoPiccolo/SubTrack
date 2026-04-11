@@ -2,7 +2,8 @@
     "tabBar": {
         "home": "Home",
         "categories": "Kategorien",
-        "wallet": "Geldbörse"
+        "wallet": "Geldbörse",
+        "calendar": "Kalender"
     },
     "addScreen": {
         "title": "Abo hinzufügen",
@@ -158,6 +159,15 @@
         "thanksMessage": "SubTrack wurde entwickelt, um dir die Verwaltung deiner Abos zu erleichtern.",
         "developer": "Entwickler",
         "iconCredits": "Icon-Nachweise"
+    },
+    "calendar": {
+        "title": "Verlängerungskalender",
+        "subtitle": "Verfolge deine Abo-Verlängerungen",
+        "noData": "Keine Abos",
+        "noDataMessage": "Füge deine Abos hinzu, um die Verlängerungsdaten im Kalender zu sehen.",
+        "noRenewals": "Keine Verlängerungen an diesem Tag",
+        "renewal": "Verlängerung",
+        "today": "Heute"
     },
     "selectSub": {
         "title": "Dienst auswählen",

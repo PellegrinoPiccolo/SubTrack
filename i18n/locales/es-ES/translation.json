@@ -2,7 +2,8 @@
     "tabBar": {
         "home": "Inicio",
         "categories": "Categorías",
-        "wallet": "Cartera"
+        "wallet": "Cartera",
+        "calendar": "Calendario"
     },
     "addScreen": {
         "title": "Añadir Suscripción",
@@ -158,6 +159,15 @@
         "thanksMessage": "SubTrack fue creado para ayudarte a gestionar tus suscripciones de forma más efectiva.",
         "developer": "Desarrollador",
         "iconCredits": "Créditos de Iconos"
+    },
+    "calendar": {
+        "title": "Calendario de Renovaciones",
+        "subtitle": "Controla las renovaciones de tus suscripciones",
+        "noData": "Sin suscripciones",
+        "noDataMessage": "Añade tus suscripciones para ver las fechas de renovación en el calendario.",
+        "noRenewals": "No hay renovaciones este día",
+        "renewal": "Renovación",
+        "today": "Hoy"
     },
     "selectSub": {
         "title": "Elegir Servicio",

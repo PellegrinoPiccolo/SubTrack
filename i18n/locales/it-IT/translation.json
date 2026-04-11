@@ -160,6 +160,15 @@
         "developer": "Sviluppatore",
         "iconCredits": "Crediti Icone"
     },
+    "calendar": {
+        "title": "Calendario Rinnovi",
+        "subtitle": "Tieni traccia dei rinnovi dei tuoi abbonamenti",
+        "noData": "Nessun abbonamento",
+        "noDataMessage": "Aggiungi i tuoi abbonamenti per vedere le date di rinnovo nel calendario.",
+        "noRenewals": "Nessun rinnovo in questo giorno",
+        "renewal": "Rinnovo",
+        "today": "Oggi"
+    },
     "selectSub": {
         "title": "Scegli un Servizio",
         "search": "Cerca...",
