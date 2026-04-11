@@ -37,9 +37,9 @@ In a world full of micro-transactions, it's easy to lose track of where your mon
 
 ## 📱 Screenshots
 
-| Dashboard | Wallet | Categories |
-|:---:|:---:|:---:|
-| ![Dashboard Shot](./screenshots/image1.png) | ![Wallet Shot](./screenshots/image2.png) | ![Categories Shot](./screenshots/image3.png) |
+| Dashboard | Wallet | Calendar | Categories |
+|:---:|:---:|:---:|:---:|
+| <img src="./screenshots/image1.png" width="200"/> | <img src="./screenshots/image2.png" width="200"/> | <img src="./screenshots/image3.png" width="200"/> | <img src="./screenshots/image4.png" width="200"/> |
 
 *(Note: Screenshots are stored in the `screenshots/` folder to keep the app bundle light)*
 
