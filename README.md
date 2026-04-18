@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/icon.png" alt="SubTrack Logo" width="100"/>
+  <img src="assets/icon.png" alt="Abbo Logo" width="100"/>
 </p>
 
-# SubTrack 💸
+# Abbo 💸
 
 > **Take back control of your expenses. Never pay for an unwanted renewal again.**
 
@@ -13,9 +13,9 @@
 
 ## 📋 About The Project
 
-**SubTrack** is a clean, simple, and privacy-focused subscription manager built with **React Native** and **Expo**. It helps users keep track of recurring payments like Netflix, Spotify, gym memberships, and software licenses.
+**Abbo** is a clean, simple, and privacy-focused subscription manager built with **React Native** and **Expo**. It helps users keep track of recurring payments like Netflix, Spotify, gym memberships, and software licenses.
 
-In a world full of micro-transactions, it's easy to lose track of where your money goes. SubTrack calculates your total monthly and annual expenses and sends **local notifications** before an automatic payment is charged. This gives users the crucial time needed to decide whether to keep a service or cancel it before the renewal hits.
+In a world full of micro-transactions, it's easy to lose track of where your money goes. Abbo calculates your total monthly and annual expenses and sends **local notifications** before an automatic payment is charged. This gives users the crucial time needed to decide whether to keep a service or cancel it before the renewal hits.
 
 ### 🌟 Key Features
 
@@ -23,7 +23,7 @@ In a world full of micro-transactions, it's easy to lose track of where your mon
 * **🔔 Smart Expiration Alerts:** Receive customizable local push notifications (e.g., 1 day before renewal) so you never get charged unexpectedly.
 * **🏷️ Labels:** Create and assign custom color-coded labels to your subscriptions for flexible, personalized organization beyond standard categories.
 * **wm Categories:** Organize your subscriptions by type (Entertainment, Work, Home, Utilities) to see exactly which area of your life costs the most.
-* **🔒 Privacy First (Local Storage):** Your financial data is yours alone. SubTrack uses **AsyncStorage** to keep all data locally on your device. No external servers, no cloud tracking.
+* **🔒 Privacy First (Local Storage):** Your financial data is yours alone. Abbo uses **AsyncStorage** to keep all data locally on your device. No external servers, no cloud tracking.
 
 ---
 
@@ -91,7 +91,7 @@ To get a local copy up and running, follow these simple steps.
 
 ## 🛡️ Privacy Policy
 
-SubTrack is designed with privacy as a core principle.
+Abbo is designed with privacy as a core principle.
 * We do not track user activity.
 * We do not store data on external servers.
 * All data is stored locally using `AsyncStorage` and stays on the user's device.
