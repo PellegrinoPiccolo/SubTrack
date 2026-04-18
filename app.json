@@ -19,7 +19,7 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.pellegrinopiccolo.abbo",
+      "bundleIdentifier": "com.pellegrinopiccolo.subtrack",
       "icons": {
         "light": "./assets/ios-light.png",
         "dark": "./assets/ios-dark.png",
@@ -33,7 +33,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.pellegrinopiccolo.abbo"
+      "package": "com.pellegrinopiccolo.subtrack"
     },
     "plugins": [
       "expo-router",
