@@ -12,7 +12,10 @@ export const colorsThemePalette = {
     orange: '#EA6F1A',
     border: '#E5D5A5',
     backgroundSecondary: '#FEFAE8',
-    gradientColors: ['#F5C228', '#E8614A']
+    gradientColors: ['#F5C228', '#E8614A'],
+    expiryUrgent: '#E53935',
+    expiryWarning: '#F5A623',
+    expirySafe: '#2ECC71'
   },
   dark: {
     background: '#0C0C10',
@@ -27,6 +30,9 @@ export const colorsThemePalette = {
     orange: '#FB923C',
     border: '#252530',
     backgroundSecondary: '#16161E',
-    gradientColors: ['#F5C228', '#FF7043']
+    gradientColors: ['#F5C228', '#FF7043'],
+    expiryUrgent: '#FF5252',
+    expiryWarning: '#FFB300',
+    expirySafe: '#00E676'
   }
 };

@@ -74,13 +74,13 @@ const Home = () => {
   const getColorByDifferenceOfDays = (sub: SubscriptionType) => {
     const diff = calcDifferenceByToday(sub);
     if (diff === t('home.today', 'Today') || diff === t('home.tomorrow', 'Tomorrow')) {
-      return colorPalette.red;
+      return colorPalette.expiryUrgent;
     } else {
       const days = parseInt(diff.split(' ')[0]);
       if (days <= 7) {
-        return colorPalette.orange;
+        return colorPalette.expiryWarning;
       } else {
-        return colorPalette.secondary;
+        return colorPalette.expirySafe;
       }
     }
   }
